@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
 
+
 * {
 	margin: 0;
 	padding: 0;
@@ -8,7 +9,6 @@
 
 body {
 	font-family: 'Ubuntu';
-	max-width: 1200px;
 	margin: 0 auto;
 }
 
@@ -28,14 +28,16 @@ main {
 
 .container-img {
 	background-color: #f7f7f9;
-	flex: 0.8;
+	flex: 0.45;
+	margin-left: 150px;
 }
 
 .container-info-product {
-	flex: 1;
-	margin-top: 20px;
+	flex: 0.6;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
+	margin-left: 50px;
 }
 
 .container-price {
@@ -44,6 +46,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-right: 20px;
 }
 
 .container-price span {
@@ -113,7 +116,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	top: 7px;
+	top: 12px;
 	right: 7px;
 }
 
@@ -164,6 +167,7 @@ main {
 	align-items: center;
 	justify-content: space-between;
 	cursor: pointer;
+	margin-right: 20px;
 }
 
 .title-description h4,
