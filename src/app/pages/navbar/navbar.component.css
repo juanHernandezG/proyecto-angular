@@ -1,10 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
 a{
-    color:  gold;
+    color:  white;
 }
 
 .navbar-brand {
-    font-family: 'Fascinate Inline', cursive;
+    font-family: 'Fascinate Inline', 'Ubuntu';
 }
 
 .navbar-nav .nav-link{
@@ -13,7 +14,10 @@ a{
 
 
 .navbar {
-    height: 100px; /* Ajusta el valor de altura según tus necesidades */
+    height: 80px;
+    background-color: rgba(0, 13, 174, 0.5);
+    background-image: linear-gradient(to bottom, rgba(0, 19, 188, 0.5), rgba(56, 218, 255, 0.6));
+    backdrop-filter: blur(5px);
   }
 
 .navbar-nav .cart-link{
