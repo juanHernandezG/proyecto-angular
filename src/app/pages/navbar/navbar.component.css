@@ -1,0 +1,21 @@
+
+a{
+    color:  gold;
+}
+
+.navbar-brand {
+    font-family: 'Fascinate Inline', cursive;
+}
+
+.navbar-nav .nav-link{
+    font-size: 20px;
+}
+
+
+.navbar {
+    height: 100px; /* Ajusta el valor de altura según tus necesidades */
+  }
+
+.navbar-nav .cart-link{
+    margin-left: auto;
+}
