@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
