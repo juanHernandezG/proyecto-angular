@@ -5,12 +5,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
 import { ProductossComponent } from './pages/productoss/productoss.component';
 import { ProductoComponent } from './pages/producto/producto.component';
+import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'carrito', component: CarritoComprasComponent },
   { path: 'productos', component: ProductossComponent },
   { path: 'producto', component: ProductoComponent },
+  { path: 'comprar', component: TerminarcompraComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
