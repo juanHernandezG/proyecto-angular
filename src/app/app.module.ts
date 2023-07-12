@@ -9,6 +9,8 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductossComponent } from './pages/productoss/productoss.component';
 import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.c
     CarritoComprasComponent,
     NavbarComponent,
     ProductossComponent,
-    TerminarcompraComponent
+    TerminarcompraComponent,
+    FooterComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
