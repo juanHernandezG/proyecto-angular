@@ -11,6 +11,7 @@ import { ProductossComponent } from './pages/productoss/productoss.component';
 import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
