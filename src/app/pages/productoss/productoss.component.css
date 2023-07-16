@@ -1,0 +1,40 @@
+.componente{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+}
+.card{
+    max-width: 28rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgba(0, 13, 174, 0.5);
+    background-image: linear-gradient(to bottom, rgba(0, 19, 188, 0.5), rgba(56, 218, 255, 0.6));
+}
+.imagen img{
+    height: 70%;
+    width: 28rem;
+    height: 28rem;
+}
+.info{
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+h1{
+    color: white;
+    align-self: center;
+    margin-top: 1.5rem;
+}
+
+button{
+    background-color: rgba(0, 13, 174, 0.5);
+    background-image: linear-gradient(to bottom, rgba(0, 19, 188, 0.5), rgba(56, 218, 255, 0.6));
+    border-radius: 10px;
+    height: 5rem;
+    color: white;
+    font-size: 2rem;
+}
