@@ -1,26 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');
+@font-face{
+    font-family: 'HeyBunnys';
+    src: url("../../../assets/fonts/HeyBunnys.ttf") format("truetype");
+}
 
+
+nav{
+    height: 6em;
+    background-color: rgba(5,18,162, 1);
+}
+img{
+    width: 18rem;
+    cursor: pointer;
+}
 a{
-    color:  white;
+    font-family: HeyBunnys;
+    font-size: 2rem;
+    color: white;
+    margin-right: 3rem;
+}
+a:hover, a.active{ 
+    color: #fffd47;
+}
+.contenedoritems{
+    width: 38rem;
+    display: inline-flex;
 }
 
-.navbar-brand {
-    font-family: 'Fascinate Inline', 'Ubuntu';
-}
-
-.navbar-nav .nav-link{
-    font-size: 20px;
-}
-
-
-.navbar {
-    height: 80px;
-    background-color: rgba(0, 13, 174, 0.5);
-    background-image: linear-gradient(to bottom, rgba(0, 19, 188, 0.5), rgba(56, 218, 255, 0.6));
-    backdrop-filter: blur(5px);
-  }
-
-.navbar-nav .cart-link{
-    margin-left: auto;
+.carrito{
+    width: 4rem;
+    height: 4rem;
 }

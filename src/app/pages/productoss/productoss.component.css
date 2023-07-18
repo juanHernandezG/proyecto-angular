@@ -1,21 +1,28 @@
+@font-face{
+    font-family: 'HeyBunnys';
+    src: url("../../../assets/fonts/HeyBunnys.ttf") format("truetype");
+}
+
 .componente{
+
     display: flex;
     justify-content: space-evenly;
-    margin-top: 3rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 .card{
-    max-width: 28rem;
+    max-width: 25rem;
     height: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    background-color: rgba(0, 13, 174, 0.5);
-    background-image: linear-gradient(to bottom, rgba(0, 19, 188, 0.5), rgba(56, 218, 255, 0.6));
+    background-color: rgba(5,18,162, 05);
+    background-image: linear-gradient(to right, rgba(5,18,162, 0.5), rgb(49, 80, 220, 1));
 }
 .imagen img{
     height: 70%;
-    width: 28rem;
-    height: 28rem;
+    width: 25rem;
+    height: 25rem;
 }
 .info{
     height: 30%;
@@ -25,16 +32,23 @@
 }
 
 h1{
-    color: white;
+    color: #fffd47;
     align-self: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem; 
+
+}
+
+.letra{
+    font-family: HeyBunnys;
+    font-size: 2.8rem;
 }
 
 button{
-    background-color: rgba(0, 13, 174, 0.5);
-    background-image: linear-gradient(to bottom, rgba(0, 19, 188, 0.5), rgba(56, 218, 255, 0.6));
+    background-color: rgba(5,18,162, 1);
+   
     border-radius: 10px;
     height: 5rem;
-    color: white;
+    color: #fffd47;
     font-size: 2rem;
+    font-family: HeyBunnys;
 }
