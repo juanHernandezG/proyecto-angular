@@ -1,0 +1,107 @@
+<body>
+    <div class="container">
+        <h2> <b>Lista de Planes</b></h2>
+        <hr>
+        
+         
+            <br>
+            <!-- Plan Basico -->
+            <div class="">
+                <div  
+                     class="card shadow rounded mb-3" 
+                     style="max-width: 4000px;">
+                    <div class="row g-0 punt">
+                    <div class="col-md-4">
+                        <br>
+                        <h5 class="card-text center"> Plan Básico </h5>
+                    </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <p class="card-text"> Un plan básico, que solo tendrá opciones a lo más simple </p>
+                            <div class="form-check form-check-reverse">
+                                <input class="form-check-input" 
+                                        type="radio"
+                                        value="1"
+                                        formControlName="checkRadio"
+                                        id="reverseRadio1">
+                                <label class="form-check-label" for="reverseRadio1"> 
+                                    <b>$2000</b>   
+                                </label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!--Plan Medio-->
+                <div  
+                     class="card shadow rounded mb-3" 
+                     style="max-width: 4000px;">
+                    <div class="row g-0 punt">
+                    <div class="col-md-4">
+                        <br>
+                        <h5 class="card-text center"> Plan Medio </h5>
+                    </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <p class="card-text"> Un plan con mejoras, pero con una restricción de opciones un poco menor. </p>
+                            <div class="form-check form-check-reverse">
+                                <input class="form-check-input" 
+                                        type="radio"
+                                        value="2"
+                                        formControlName="checkRadio"
+                                        id="reverseRadio2">
+                                <label class="form-check-label" for="reverseRadio2"> 
+                                    <b>$4000</b>   
+                                </label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!--Plan Premium-->
+                <div  
+                     class="card shadow rounded mb-3" 
+                     style="max-width: 4000px;">
+                    <div class="row g-0 punt">
+                    <div class="col-md-4">
+                        <br>
+                        <h5 class="card-text center"> Plan Premium </h5>
+                    </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <p class="card-text"> Un plan con muchas mejoras, a su vez de una facilidad más libre dentro de las opciones que se encuentran. </p>
+                            <div class="form-check form-check-reverse">
+                                <input class="form-check-input" 
+                                        type="radio"
+                                        value="3"
+                                        formControlName="checkRadio"
+                                        id="reverseRadio3">
+                                <label class="form-check-label" for="reverseRadio3"> 
+                                    <b>$6000</b>   
+                                </label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row" class="abs-center">
+                    <label class="row-2 col-form-label"> </label>
+                    <div class="d-grid gap-2 col-md-4">
+                        <button type="submit" 
+                        class="btn btn-primary md-2"
+                        [disabled] = "miFormulario.pending"
+                        >
+                        Continuar con el pago
+                    </button>
+                </div>
+                </div>
+            </div>
+        <br>
+        </div>
+        
+        
+        
+</body>

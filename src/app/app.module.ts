@@ -11,6 +11,10 @@ import { ProductossComponent } from './pages/productoss/productoss.component';
 import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StepOneComponent } from './pages/terminarcompra/components/step-one/step-one.component';
+import { StepTwoComponent } from './pages/terminarcompra/components/step-two/step-two.component';
+import { StepperComponent } from './pages/terminarcompra/components/stepper/stepper.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductossComponent,
     TerminarcompraComponent,
     FooterComponent,
+    StepOneComponent,
+    StepTwoComponent,
+    StepperComponent,
   ],
   imports: [
     BrowserModule,

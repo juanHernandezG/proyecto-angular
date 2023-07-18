@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./terminarcompra.component.css']
 })
 export class TerminarcompraComponent {
+  actualStep: number;
 
+  constructor(){
+    this.actualStep=1;
+  }
 }
