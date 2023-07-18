@@ -15,6 +15,7 @@ import { StepOneComponent } from './pages/terminarcompra/components/step-one/ste
 import { StepTwoComponent } from './pages/terminarcompra/components/step-two/step-two.component';
 import { StepperComponent } from './pages/terminarcompra/components/stepper/stepper.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StepOneComponent,
     StepTwoComponent,
     StepperComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
