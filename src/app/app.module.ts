@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductossComponent } from './pages/productoss/productoss.component';
 import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.component';
 import { FooterComponent } from './pages/footer/footer.component';
-import { ContactoComponent } from './pages/contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductossComponent,
     TerminarcompraComponent,
     FooterComponent,
-    ContactoComponent
   ],
   imports: [
     BrowserModule,
