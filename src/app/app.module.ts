@@ -19,6 +19,8 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
+import { MenuAdminComponent } from './pages/admin/menu-admin/menu-admin.component';
+import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos/mantenedor-productos.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { RecuperarComponent } from './pages/recuperar/recuperar.component';
     LoginComponent,
     RegisterComponent,
     RecuperarComponent,
+    MenuAdminComponent,
+    MantenedorProductosComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ import { StepTwoComponent } from './pages/terminarcompra/components/step-two/ste
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos/mantenedor-productos.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,11 +20,13 @@ const routes: Routes = [
   { path: 'productos', component: ProductossComponent },
   { path: 'producto', component: ProductoComponent },
   { path: 'comprar', component: TerminarcompraComponent },
-  {path:'comprar-uno', component: StepOneComponent},
-  {path:'comprar-dos', component: StepTwoComponent},
-  {path:'login', component: LoginComponent},
-  {path:'register', component: RegisterComponent},
-  {path:'recuperar', component: RecuperarComponent},
+  { path:'comprar-uno', component: StepOneComponent},
+  { path:'comprar-dos', component: StepTwoComponent},
+  { path:'login', component: LoginComponent},
+  { path:'register', component: RegisterComponent},
+  { path:'recuperar', component: RecuperarComponent},
+  { path:'admin', component: DashboardComponent},
+  { path: 'mant-productos', component: MantenedorProductosComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
