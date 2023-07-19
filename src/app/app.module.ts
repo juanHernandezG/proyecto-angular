@@ -16,6 +16,9 @@ import { StepTwoComponent } from './pages/terminarcompra/components/step-two/ste
 import { StepperComponent } from './pages/terminarcompra/components/stepper/stepper.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
     StepTwoComponent,
     StepperComponent,
     DashboardComponent,
+    LoginComponent,
+    RegisterComponent,
+    RecuperarComponent,
   ],
   imports: [
     BrowserModule,

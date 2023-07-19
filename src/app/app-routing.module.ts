@@ -8,6 +8,9 @@ import { ProductoComponent } from './pages/producto/producto.component';
 import { TerminarcompraComponent } from './pages/terminarcompra/terminarcompra.component';
 import { StepOneComponent } from './pages/terminarcompra/components/step-one/step-one.component';
 import { StepTwoComponent } from './pages/terminarcompra/components/step-two/step-two.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +20,9 @@ const routes: Routes = [
   { path: 'comprar', component: TerminarcompraComponent },
   {path:'comprar-uno', component: StepOneComponent},
   {path:'comprar-dos', component: StepTwoComponent},
+  {path:'login', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
+  {path:'recuperar', component: RecuperarComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
