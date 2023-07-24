@@ -21,6 +21,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 import { MenuAdminComponent } from './pages/admin/menu-admin/menu-admin.component';
 import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos/mantenedor-productos.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
