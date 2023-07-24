@@ -18,6 +18,7 @@ main {
 
 .container-img {
 	background-color: #f7f7f9;
+	border: 2px solid black;
 	flex: 0.35;
 	margin-left: 12rem;
 	width: 65rem;
@@ -25,7 +26,6 @@ main {
 	display:flex;
     justify-content: center;
     align-items: center;
-	
 }
 h6{
 	margin-bottom: -.4 rem;
