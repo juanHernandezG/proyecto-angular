@@ -22,6 +22,7 @@ import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 import { MenuAdminComponent } from './pages/admin/menu-admin/menu-admin.component';
 import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos/mantenedor-productos.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppService } from './pages/app.service';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

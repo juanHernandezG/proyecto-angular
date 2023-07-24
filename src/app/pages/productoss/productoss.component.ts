@@ -9,12 +9,15 @@ import { AppService } from '../app.service';
 export class ProductossComponent implements OnInit {
 
   tipos: any[] = [];
+  AppService: any;
 
   constructor(private tipoService: AppService){
-    this.tipoService.getTipo().subscribe(data => {
-      this.tipos = data;
-      console.log(data);
-    });  
+    this.tipoService.getTipo().subscribe((res: any[])=>{
+      this.tipoService.products = res;
+      console.log(this.tipoService.products);
+    },
+    err => console.log(err)
+    ) 
   }
 
   ngOnInit(): void {
