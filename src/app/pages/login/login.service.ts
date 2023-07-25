@@ -19,7 +19,8 @@ export class LoginService {
       localStorage.setItem('token', res.token);
       localStorage.setItem('usuario', JSON.stringify(res.usuario));
       this.logueado = true;
-      this.router.navigate(['admin']);
+      this.router.navigate(['/admin']);
+      console.log(this.logueado);
       return res;
     }));
   }
@@ -29,7 +30,7 @@ export class LoginService {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     this.logueado = false;
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
   //Consultar si el usuario/admin esta activo 
