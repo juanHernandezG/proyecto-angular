@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Diseno, IProduct, Producto, Talla } from './products';
+import { Mangalarga, Polera, Poleron, Polo, Tipo } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -10,45 +10,62 @@ import { Color, Diseno, IProduct, Producto, Talla } from './products';
 export class AppService {
   private apiUrl = 'http://localhost/3000';
 
-  public products:IProduct[] = [];
+  public products:Tipo[] = [];
 
-  public tallas:Talla[] = [];
+  public polera:Polera[] = [];
 
-  public colores:Color[] = [];
+  public mangalarga:Mangalarga[] = [];
 
-  public disenos:Diseno[] = [];
+  public poleron:Poleron[] = [];
 
-  public productos:Producto[] = [];
+  public polo:Polo[] = [];
 
 
   constructor(private http: HttpClient) { }
 
-  getTipo(): Observable<IProduct[]>{
-    return this.http.get<IProduct[]>('http://localhost:3000/tipo')
+  getTipo(): Observable<Tipo[]>{
+    return this.http.get<Tipo[]>('http://localhost:3000/tipo')
       .pipe(map((res:any)=> res.data));
   }
 
-  getTalla(): Observable<Talla[]>{
-    return this.http.get<Talla[]>('http://localhost:3000/talla')
+  getPoleras(): Observable<Polera[]>{
+    return this.http.get<Polera[]>('http://localhost:3000/polera')
       .pipe(map((res:any)=> res.data));
   }
 
-  getColor(): Observable<Color[]>{
-    return this.http.get<Color[]>('http://localhost:3000/color')
+  getMangalarga(): Observable<Mangalarga[]>{
+    return this.http.get<Polera[]>('http://localhost:3000/mangalarga')
       .pipe(map((res:any)=> res.data));
   }
 
-  getDiseno(): Observable<Diseno[]>{
-    return this.http.get<Diseno[]>('http://localhost:3000/diseno')
+  getPoleron(): Observable<Poleron[]>{
+    return this.http.get<Poleron[]>('http://localhost:3000/poleron')
       .pipe(map((res:any)=> res.data));
   }
 
-  getProductos(): Observable<Producto[]>{
-    return this.http.get<Producto[]>('http://localhost:3000/producto')
+  getPolo(): Observable<Polo[]>{
+    return this.http.get<Polo[]>('http://localhost:3000/polo')
       .pipe(map((res:any)=> res.data));
   }
 
+  getProductoByIdTipo(idTipo: number): Observable<any> {
+    const url = `${this.apiUrl}/producto/${idTipo}`;
+    return this.http.get(url);
+  }
 
+  getColores(idTipo: number): Observable<any> {
+    const url = `${this.apiUrl}/color/${idTipo}`;
+    return this.http.get(url);
+  }
   
+  getTalla(idTipo: number): Observable<any> {
+    const url = `${this.apiUrl}/talla/${idTipo}`;
+    return this.http.get(url);
+  }
+
+  getPrecio(idTipo: number): Observable<any> {
+    const url = `${this.apiUrl}/precio/${idTipo}`;
+    return this.http.get(url);
+  }
 
 }

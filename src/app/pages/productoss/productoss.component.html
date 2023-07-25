@@ -3,13 +3,13 @@
   <h2>Selecciona Una Prenda</h2>
   <div class="componente">
 
-    <div class="card" *ngFor="let product of tipos">
-      <h1 class="letra">{{ product.tipo }}</h1>
+    <div class="card" *ngFor="let tipos of tipos">
+      <h1 class="letra">{{ tipos.nombre }}</h1>
       <div class="imagen">
-        <img [src]="product.imageUrl" alt="{{ product.tipo }}" height="50" width="50">
+        <img [src]="tipos.imagen" alt="{{ tipos.nombre }}" height="50" width="50">
       </div>
       <div class="info">
-        <button [routerLink]="['/producto, {{product.tipo.id_tipo}}']" class="boton">Seleccionar</button>
+        <button [routerLink]="'/producto/' + tipos.idtipo" class="boton">Seleccionar</button>
       </div>
     </div> 
 

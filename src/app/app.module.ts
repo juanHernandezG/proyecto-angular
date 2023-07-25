@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepOneComponent } from './pages/terminarcompra/components/step-one/step-one.component';
 import { StepTwoComponent } from './pages/terminarcompra/components/step-two/step-two.component';
 import { StepperComponent } from './pages/terminarcompra/components/stepper/stepper.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -49,7 +49,8 @@ import { AppService } from './pages/app.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

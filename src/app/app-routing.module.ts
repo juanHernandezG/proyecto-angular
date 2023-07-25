@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'carrito', component: CarritoComprasComponent },
   { path: 'productos', component: ProductossComponent },
-  { path: 'producto', component: ProductoComponent },
+  { path: 'producto/:idtipo', component: ProductoComponent },
   { path: 'comprar', component: TerminarcompraComponent },
   { path:'comprar-uno', component: StepOneComponent},
   { path:'comprar-dos', component: StepTwoComponent},

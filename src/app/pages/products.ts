@@ -1,27 +1,45 @@
-export interface IProduct{
-    id_tipo: number;
-    tipo:string;
-    imageUrl:string;
+export interface Tipo{
+    idtipo: number;
+    nombre:string;
+    imagen:string;
 }
 
-export interface Talla{
-    id_talla: number;
-    talla: string;
-}
-
-export interface Color{
-    id_color: number;
-    color:string;
-}
-
-export interface Producto{
-    id_producto: number;
-    base_id: number;
-    diseno_id: number;
+export interface Polera{
+    idpolera: number;
+    color: string;
+    imagen: string;
     precio: number;
+    tipo: number;
+    talla: string;
+    stock: number;
 }
 
-export interface Diseno{
-    id_diseno: number;
-    diseno: string;
+export interface Mangalarga{
+    idmangalarga: number;
+    color: string;
+    imagen: string;
+    precio: number;
+    tipo: number;
+    talla: string;
+    stock: number;
+}
+
+export interface Poleron{
+    idpoleron: number;
+    color: string;
+    imagen: string;
+    precio: number;
+    tipo: number;
+    talla: string;
+    stock: number;
+}
+
+export interface Polo{
+    idpolo: number;
+    color: string;
+    imagen: string;
+    precio: number;
+    tipo: number;
+    talla: string;
+    stock: number;
 }
