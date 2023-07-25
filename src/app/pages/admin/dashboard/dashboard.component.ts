@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+
+
+  constructor(private loginServic: LoginService) {
+
+  }
+
+  cerrarSesion(){
+    this.loginServic.logout();
+  }
 
 }

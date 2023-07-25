@@ -1,9 +1,9 @@
 
 
-<app-stepper [actualStep]="actualStep"></app-stepper>
+<app-stepper></app-stepper>
 <br>
 
-<div class="row m-4" *ngIf="actualStep==1">
+<!-- <div class="row m-4" *ngIf="actualStep==1">
    <div class="col-12"> 
        <div class= "box-container">
            <app-step-one (sendNextStep)="actualStep=$event"> </app-step-one>
@@ -18,6 +18,6 @@
            <app-step-two (sendNextStep)="actualStep=$event"></app-step-two>
        </div>
    </div>
-</div> 
+</div>  -->
 
 <router-outlet></router-outlet>

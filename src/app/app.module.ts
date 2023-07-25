@@ -23,7 +23,11 @@ import { MenuAdminComponent } from './pages/admin/menu-admin/menu-admin.componen
 import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos/mantenedor-productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './pages/app.service';
-
+//
+import {MatInput, MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { AppService } from './pages/app.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatStepperModule,
+    MatFormFieldModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
