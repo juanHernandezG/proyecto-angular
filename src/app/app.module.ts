@@ -49,7 +49,8 @@ import { AppService } from './pages/app.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
