@@ -1,55 +1,17 @@
 <div class="contenedor">
   <h6>.</h6>
   <h2>Selecciona Una Prenda</h2>
-<div class="componente">
+  <div class="componente">
 
-    <!-- <div class="card" *ngFor="let product of this.productService.products">
-        <h1 class="letra">{{product.tipo}}</h1>
-        <div class="imagen">
-          <img [src]="product.imageUrl" alt="{{product.tipo}}" height="50" width="50">
-          {{product.tipo}}
-      </div>  
-    </div>  -->
-    <div class="card">
-      <h1 class="letra">Polera</h1>
+    <div class="card" *ngFor="let product of tipos">
+      <h1 class="letra">{{ product.tipo }}</h1>
       <div class="imagen">
-        <img src="https://www.gustore.cl/temp/img/poleras/poleraBlanca_800x859.png?v=new7">
-      </div>
-
-        <div class="info">
-          <button routerLink="/producto" class="boton">Seleccionar</button>
-        </div>
-    </div>
-        
-    <div class="card">
-      <h1 class="letra">Polera Manga Larga</h1>
-      <div class="imagen">
-        <img src="https://www.gustore.cl/temp/img/poleras/blancoMangaLarga_800x945.png?v=7">
-      </div>
-
-      <div class="info">
-        <button routerLink="/producto" class="boton">Seleccionar</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h1 class="letra">Poleron Canguro</h1>
-      <div class="imagen">
-        <img src="https://www.gustore.cl/temp/img/poleras/poleronBlanco_800x800.png?v=7">
+        <img [src]="product.imageUrl" alt="{{ product.tipo }}" height="50" width="50">
       </div>
       <div class="info">
-        <button routerLink="/producto" class="boton">Seleccionar</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h1 class="letra">Poleron polo</h1>
-      <div class="imagen">
-        <img src="https://www.gustore.cl/temp/img/poleras/poleronPoloBlanco_800x800.png?v=7">
-      </div>
-      <div class="info">
-        <button routerLink="/producto" class="boton">Seleccionar</button>
+        <button [routerLink]="['/producto, {{product.tipo.id_tipo}}']" class="boton">Seleccionar</button>
       </div>
     </div> 
-</div>
+
+  </div>
 </div>
