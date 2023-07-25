@@ -14,7 +14,7 @@
     justify-content: space-between;
     position: relative;
 }
-
+/*
 .steps .circle{
     display: flex;
     align-items: center;
@@ -79,4 +79,12 @@
 .buttons button:disabled{
     background: #87a5f8;
     cursor: not-allowed;
-}
+} */
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
