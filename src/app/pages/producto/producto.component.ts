@@ -19,6 +19,7 @@ export class ProductoComponent implements OnInit {
   nombreTipo: string = '';
   public poleras: Polera[] | undefined;
   public precioP: number | undefined;
+  public stockP: number | undefined;
   public polerones: Poleron[] | undefined;
   public polos: Polo[] | undefined;
   public mangalargas: Mangalarga[] | undefined;
@@ -143,6 +144,7 @@ export class ProductoComponent implements OnInit {
         if (poleraSeleccionada) {
           this.precioP = poleraSeleccionada.precio;
           this.imagen = poleraSeleccionada.imagen;
+          this.stockP = poleraSeleccionada.stock;
         } else {
           console.error('Tipo de polera no encontrado.');
         }
@@ -163,6 +165,7 @@ export class ProductoComponent implements OnInit {
         if (poleronSeleccionado) {
           this.precioP = poleronSeleccionado.precio;
           this.imagen = poleronSeleccionado.imagen;
+          this.stockP = poleronSeleccionado.stock;
         } else {
           console.error('Tipo de polerón no encontrado.');
         }
@@ -183,6 +186,7 @@ export class ProductoComponent implements OnInit {
         if (poloSeleccionado) {
           this.precioP = poloSeleccionado.precio;
           this.imagen = poloSeleccionado.imagen;
+          this.stockP = poloSeleccionado.stock;
         } else {
           console.error('Tipo de polo no encontrado.');
         }
@@ -203,6 +207,7 @@ export class ProductoComponent implements OnInit {
         if (mangalargaSeleccionada) {
           this.precioP = mangalargaSeleccionada.precio;
           this.imagen = mangalargaSeleccionada.imagen;
+          this.stockP = mangalargaSeleccionada.stock;
         } else {
           console.error('Tipo de mangalarga no encontrado.');
         }
