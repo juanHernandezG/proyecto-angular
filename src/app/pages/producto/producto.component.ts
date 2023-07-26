@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Color, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo } from '../products';
+import { Allproduct, Color, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
 import { CarritoComprasService } from '../carrito-compras.service';
 
@@ -12,7 +12,16 @@ import { CarritoComprasService } from '../carrito-compras.service';
 export class ProductoComponent implements OnInit {
 
   tipos: Tipo[] = [];
-  producto!: Producto;
+  colores: Color[] = [];
+  producto: Producto = {
+    idproducto: 0,
+    cantidad: 1,
+    color: '',
+    talla: '',
+    imagenprenda: '',
+    imagendiseno: '',
+    precio: 0
+  };
   talla: any[] = [];
   disenos: any[] = [];
   productos: any[] = [];
@@ -24,12 +33,12 @@ export class ProductoComponent implements OnInit {
   public polos: Polo[] | undefined;
   public mangalargas: Mangalarga[] | undefined;
   public imagen: string = '';
-  colores: Color[] = [];
   imagenSeleccionada: string | null = null;
   imagenPredeterminada: string = '';
   archivoSeleccionado: File | null = null;
   idtipo: number | undefined;
   incrementadoPrecio = false;
+  cantidadProductos = 1;
 
   onDesignSelected(event: any) {
     const selectedImagen = event.target.value;
@@ -53,9 +62,32 @@ export class ProductoComponent implements OnInit {
     }
   }
 
-  onAddToCart() {
-    this.carritoService.agregarAlCarrito(this.producto);
+  onColorSelected(event: any) {
+    const colorSeleccionado = event.target.value; // Obtener el color seleccionado
+    const color = this.colores.find((c: Color) => c.color === colorSeleccionado); // Buscar el color en la lista de colores disponibles
+
+    if (color) {
+      // Asignar la imagen correspondiente al color seleccionado
+      this.imagenPredeterminada= color.imagen;
+    } else {
+      // Si no se encuentra el color, establecer la imagen como null
+      this.imagenSeleccionada = null;
+    }
   }
+
+
+  incrementarCantidad() {
+    this.cantidadProductos++;
+  }
+
+  decrementarCantidad() {
+    if (this.cantidadProductos > 1) {
+      this.cantidadProductos--;
+      
+    }
+  }
+
+ 
 
   getPrecioBase(): void {
     if (this.idtipo !== undefined) {
@@ -75,6 +107,14 @@ export class ProductoComponent implements OnInit {
       (res: Polera[]) => {
         this.poleras = res;
         console.log(this.poleras);
+      },
+      err => console.log(err)
+    );
+
+    this.tipoService.getColor().subscribe(
+      (res: Color[]) => {
+        this.colores = res;
+        console.log(this.colores);
       },
       err => console.log(err)
     );
@@ -108,6 +148,11 @@ export class ProductoComponent implements OnInit {
       console.log(data);
     });
 
+    this.tipoService.getColor().subscribe(data => {
+      this.colores = data;
+      console.log(data);
+    });
+
     this.tipoService.getTipo().subscribe(data => {
       this.tipos = data;
       console.log(data);
@@ -131,11 +176,16 @@ export class ProductoComponent implements OnInit {
       const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === idTipoSeleccionado);
       this.nombreTipo = tipoSeleccionado ? tipoSeleccionado.nombre : '';
       this.imagenPredeterminada = tipoSeleccionado ? tipoSeleccionado.imagen: '';
+      
     });
+
+    
 
     this.tipoService.getPoleras().subscribe(
       (data: Polera[]) => {
         this.poleras = data;
+
+
 
         // Obtener el precio y la imagen de la polera del tipo seleccionado
         const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
@@ -229,6 +279,8 @@ export class ProductoComponent implements OnInit {
 
     // Obtener el precio base del tipoid actual
     this.getPrecioBase();
+
+    
 
     
   }

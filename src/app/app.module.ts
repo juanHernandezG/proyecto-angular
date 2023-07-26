@@ -61,7 +61,8 @@ import { PoleraComponent } from './pages/admin/polera/polera.component';
     MatButtonModule,
     MatInputModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [AppService, CarritoComprasService],
   bootstrap: [AppComponent]
