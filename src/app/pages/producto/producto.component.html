@@ -3,8 +3,12 @@
     
     <main>
       <div class="container-img">
-        <img src="{{imagen}}">
+        <img [src]="imagenPredeterminada" alt="Imagen predeterminada">
+        <div class="imagen-seleccionada-container" *ngIf="imagenSeleccionada !== null">
+          <img [src]="imagenSeleccionada" alt="Imagen seleccionada">
+        </div>
       </div>
+      
 
       <div class="container-info-product">
         <div class="container-price">
@@ -14,40 +18,30 @@
     
         <div class="container-details-product">
           <div class="form-group">
-            <label for="colour">Color</label>
-            <select name="colour" id="colour">
-              <option disabled selected value="">Escoge un color</option>
-              <option value="rojo">Rojo</option>
-              <option value="blanco">Blanco</option>
-              <option value="negro">Negro</option>
+            <select>
+              <option *ngFor="let color of colores" [value]="color">{{ colores }}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="size">Talla</label>
             <select name="size" id="size">
               <option disabled selected value="">Elige una talla</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
+              <option *ngFor="let talla of talla" [value]="talla.talla">{{ talla.talla }}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="design">Diseño</label>
-            <select name="design" id="design">
-              <option disabled selected value="">Elige un diseño</option>
-              <option value="option0">Ninguno</option>
-              <option value="option1">Opción 1</option>
-              <option value="option2">Opción 2</option>
-              <option value="option3">Opción 3</option>
+            <select (change)="onDesignSelected($event)">
+              <option disabled selected value="">Escoge un diseño</option>
+              <option *ngFor="let diseno of disenos" [value]="diseno.imagen">{{ diseno.nombre }}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="image">Agregar diseño</label>
-            <input type="file" id="image" name="image">
+            <input type="file" id="image" name="image" (change)="onFileSelected($event)">
           </div>
         </div>
         
-    
         <div class="container-add-cart">
           <div class="container-quantity">
             <input type="number" placeholder="1" value="1" min="1" class="input-quantity">
@@ -56,10 +50,13 @@
               <i class="fas fa-chevron-down" id="decrement"></i>
             </div>
           </div>
-          <button class="btn-add-to-cart" routerLink="/carrito">
+          <button (click)="onAddToCart()">
             <i class="fas fa-plus"></i>
             Añadir al carrito
           </button>
+        </div>
+        <div class="container-stock">
+          <span>Disponibles: {{stockP}}</span>
         </div>
       </div>
     </main>

@@ -28,6 +28,7 @@ import {MatInput, MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
+import { CarritoComprasService } from './pages/carrito-compras.service';
 import { PoleraComponent } from './pages/admin/polera/polera.component';
 
 @NgModule({
@@ -62,7 +63,7 @@ import { PoleraComponent } from './pages/admin/polera/polera.component';
     MatStepperModule,
     MatFormFieldModule
   ],
-  providers: [AppService],
+  providers: [AppService, CarritoComprasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

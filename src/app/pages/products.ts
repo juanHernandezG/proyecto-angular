@@ -48,6 +48,29 @@ export interface Color{
     
 }
 
+export interface Talla{
+    idtalla: number;
+    talla: string;
+}
+
+export interface Diseno{
+    iddiseno: number;
+    nombre: string;
+    imagen: string;
+}
+
+export interface Producto{
+    idproducto: number;
+    cantidad: number;
+    tipoid: number;
+    color: string;
+    talla: string;
+    disenoid: number;
+    imagenprenda: string;
+    imagendiseno: string;
+    precio: number;
+}
+
 export interface Allproduct{
     id:number;
     tipo:string;

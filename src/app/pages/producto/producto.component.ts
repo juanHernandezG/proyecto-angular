@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Color, Mangalarga, Polera, Poleron, Polo, Tipo } from '../products';
+import { Color, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
+import { CarritoComprasService } from '../carrito-compras.service';
 
 @Component({
   selector: 'app-producto',
@@ -11,16 +12,65 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductoComponent implements OnInit {
 
   tipos: Tipo[] = [];
+  producto!: Producto;
+  talla: any[] = [];
+  disenos: any[] = [];
+  productos: any[] = [];
   nombreTipo: string = '';
   public poleras: Polera[] | undefined;
   public precioP: number | undefined;
+  public stockP: number | undefined;
   public polerones: Poleron[] | undefined;
   public polos: Polo[] | undefined;
   public mangalargas: Mangalarga[] | undefined;
   public imagen: string = '';
   colores: Color[] = [];
+  imagenSeleccionada: string | null = null;
+  imagenPredeterminada: string = '';
+  archivoSeleccionado: File | null = null;
+  idtipo: number | undefined;
+  incrementadoPrecio = false;
 
-  constructor(private tipoService: AppService, private route: ActivatedRoute) {
+  onDesignSelected(event: any) {
+    const selectedImagen = event.target.value;
+    this.imagenSeleccionada = selectedImagen;
+    this.incrementarPrecio();
+  }
+
+
+  onFileSelected(event: any) {
+    this.archivoSeleccionado = event.target.files[0] as File;
+    if (this.archivoSeleccionado) {
+      this.imagenSeleccionada = URL.createObjectURL(this.archivoSeleccionado);
+    }
+    this.incrementarPrecio();
+  }
+
+  private incrementarPrecio() {
+    if (!this.incrementadoPrecio && this.precioP !== undefined) {
+      this.precioP += 7000;
+      this.incrementadoPrecio = true;
+    }
+  }
+
+  onAddToCart() {
+    this.carritoService.agregarAlCarrito(this.producto);
+  }
+
+  getPrecioBase(): void {
+    if (this.idtipo !== undefined) {
+      this.tipoService.getPrecioBasePorTipo(this.idtipo).subscribe(
+        (precioBase: number) => {
+          this.precioP = precioBase; // Establece el precio base obtenido del servicio
+        },
+        (error) => {
+          console.error('Error al obtener el precio base:', error);
+        }
+      );
+    }
+  }
+
+  constructor(private tipoService: AppService, private route: ActivatedRoute, private carritoService: CarritoComprasService) {
     this.tipoService.getPoleras().subscribe(
       (res: Polera[]) => {
         this.poleras = res;
@@ -36,6 +86,20 @@ export class ProductoComponent implements OnInit {
       },
       err => console.log(err)
     );
+
+    this.tipoService.getTalla().subscribe((res: any[])=>{
+      this.tipoService.products = res;
+      console.log(this.tipoService.products);
+    },
+    err => console.log(err)
+    ) 
+
+    this.tipoService.getDiseno().subscribe((res: any[])=>{
+      this.tipoService.disenos = res;
+      console.log(this.tipoService.disenos);
+    },
+    err => console.log(err)
+    )
   }
 
   ngOnInit(): void {
@@ -49,6 +113,16 @@ export class ProductoComponent implements OnInit {
       console.log(data);
     });
 
+    this.tipoService.getTalla().subscribe(data => {
+      this.talla = data;
+      console.log(data);
+    });
+
+    this.tipoService.getDiseno().subscribe(data => {
+      this.disenos = data;
+      console.log(data);
+    })
+
     this.tipoService.getTipo().subscribe((data: Tipo[]) => {
       this.tipos = data;
 
@@ -56,6 +130,7 @@ export class ProductoComponent implements OnInit {
       const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
       const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === idTipoSeleccionado);
       this.nombreTipo = tipoSeleccionado ? tipoSeleccionado.nombre : '';
+      this.imagenPredeterminada = tipoSeleccionado ? tipoSeleccionado.imagen: '';
     });
 
     this.tipoService.getPoleras().subscribe(
@@ -69,6 +144,7 @@ export class ProductoComponent implements OnInit {
         if (poleraSeleccionada) {
           this.precioP = poleraSeleccionada.precio;
           this.imagen = poleraSeleccionada.imagen;
+          this.stockP = poleraSeleccionada.stock;
         } else {
           console.error('Tipo de polera no encontrado.');
         }
@@ -89,6 +165,7 @@ export class ProductoComponent implements OnInit {
         if (poleronSeleccionado) {
           this.precioP = poleronSeleccionado.precio;
           this.imagen = poleronSeleccionado.imagen;
+          this.stockP = poleronSeleccionado.stock;
         } else {
           console.error('Tipo de polerón no encontrado.');
         }
@@ -109,6 +186,7 @@ export class ProductoComponent implements OnInit {
         if (poloSeleccionado) {
           this.precioP = poloSeleccionado.precio;
           this.imagen = poloSeleccionado.imagen;
+          this.stockP = poloSeleccionado.stock;
         } else {
           console.error('Tipo de polo no encontrado.');
         }
@@ -129,6 +207,7 @@ export class ProductoComponent implements OnInit {
         if (mangalargaSeleccionada) {
           this.precioP = mangalargaSeleccionada.precio;
           this.imagen = mangalargaSeleccionada.imagen;
+          this.stockP = mangalargaSeleccionada.stock;
         } else {
           console.error('Tipo de mangalarga no encontrado.');
         }
@@ -137,5 +216,20 @@ export class ProductoComponent implements OnInit {
         console.error('Error al obtener las mangalargas:', error);
       }
     );
+
+    this.idtipo = Number(this.route.snapshot.paramMap.get('idtipo'));
+
+    // Obtener el nombre del tipo seleccionado según el idtipo que tienes en la URL
+    this.tipoService.getTipo().subscribe((data: Tipo[]) => {
+      this.tipos = data;
+
+      const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === this.idtipo);
+      this.nombreTipo = tipoSeleccionado ? tipoSeleccionado.nombre : '';
+    });
+
+    // Obtener el precio base del tipoid actual
+    this.getPrecioBase();
+
+    
   }
 }
