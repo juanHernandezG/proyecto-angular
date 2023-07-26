@@ -30,6 +30,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import { CarritoComprasService } from './pages/carrito-compras.service';
 import { PoleraComponent } from './pages/admin/polera/polera.component';
+import { MantenedorEnvioComponent } from './pages/admin/dashboard/mantenedor-envio/mantenedor-envio.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PoleraComponent } from './pages/admin/polera/polera.component';
     MenuAdminComponent,
     MantenedorProductosComponent,
     PoleraComponent,
+    MantenedorEnvioComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { PoleraComponent } from './pages/admin/polera/polera.component';
     MatButtonModule,
     MatInputModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [AppService, CarritoComprasService],
   bootstrap: [AppComponent]

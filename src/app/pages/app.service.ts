@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct } from './products';
+import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,10 @@ export class AppService {
   public disenos:Diseno[] = [];
 
   public productos:Producto[] = [];
+
+  public colores:Color[] = [];
+
+  public coloresml:Colorml[] = [];
 
 
   constructor(private http: HttpClient) { }
@@ -59,10 +63,17 @@ export class AppService {
       .pipe(map((res:any)=> res.data));
   }
 
-  getColor(idTipo: number): Observable<Color[]> {
-    const url = `http://localhost:3000/color/${idTipo}`;
-    return this.http.get<Color[]>(url);
+  getColor(): Observable<Color[]>{
+    return this.http.get<Color[]>('http://localhost:3000/color')
+      .pipe(map((res:any)=> res.data));
   }
+
+  getColorml(): Observable<Colorml[]>{
+    return this.http.get<Colorml[]>('http://localhost:3000/colorml')
+      .pipe(map((res:any)=> res.data));
+  }
+
+  
 
   getDiseno(): Observable<Diseno[]>{
     return this.http.get<Diseno[]>('http://localhost:3000/diseno')
@@ -86,10 +97,9 @@ export class AppService {
         return response.data;
       })
     );
-
-    
   }
 
+  
   getPrecioBasePorTipo(idtipo: number): Observable<number> {
     const url = `${this.apiUrl}/precio/${idtipo}`;
     return this.http.get<number>(url);
@@ -98,4 +108,6 @@ export class AppService {
     return this.http.get<any[]>('http://localhost:3000/allproduct')
     .pipe(map((res:any) => res.data));  
   }
+
+
 }

@@ -45,6 +45,18 @@ export interface Polo{
 }
 
 export interface Color{
+    idcolor: number;
+    tipo: number;
+    color: string;
+    imagen: string;
+    
+}
+
+export interface Colorml{
+    idcolor: number;
+    tipo: number;
+    color: string;
+    imagen: string;
     
 }
 
@@ -62,10 +74,8 @@ export interface Diseno{
 export interface Producto{
     idproducto: number;
     cantidad: number;
-    tipoid: number;
     color: string;
     talla: string;
-    disenoid: number;
     imagenprenda: string;
     imagendiseno: string;
     precio: number;

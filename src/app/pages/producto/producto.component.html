@@ -18,8 +18,10 @@
     
         <div class="container-details-product">
           <div class="form-group">
-            <select>
-              <option *ngFor="let color of colores" [value]="color">{{ colores }}</option>
+            <label for="colour">Color</label>
+            <select name="colour" id="colour" (change)="onColorSelected($event)">
+              <option disabled selected value="">Elige un color</option>
+              <option *ngFor="let color of colores" [value]="color.color">{{ color.color }}</option>
             </select>
           </div>
           <div class="form-group">
@@ -44,13 +46,13 @@
         
         <div class="container-add-cart">
           <div class="container-quantity">
-            <input type="number" placeholder="1" value="1" min="1" class="input-quantity">
+            <input type="number" placeholder="1" [value]="cantidadProductos" min="1" class="input-quantity">
             <div class="btn-increment-decrement">
-              <i class="fas fa-chevron-up" id="increment"></i>
-              <i class="fas fa-chevron-down" id="decrement"></i>
+              <i class="fas fa-chevron-up" id="increment" (click)="incrementarCantidad()"></i>
+              <i class="fas fa-chevron-down" id="decrement" (click)="decrementarCantidad()"></i>
             </div>
           </div>
-          <button (click)="onAddToCart()">
+          <button class="btn-add-to-cart" routerLink="/carrito">
             <i class="fas fa-plus"></i>
             Añadir al carrito
           </button>

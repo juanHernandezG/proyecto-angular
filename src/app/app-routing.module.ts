@@ -1,3 +1,4 @@
+import { MantenedorEnvioComponent } from './pages/admin/dashboard/mantenedor-envio/mantenedor-envio.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path:'recuperar', component: RecuperarComponent},
   { path:'admin', component: DashboardComponent, canActivate:[]},
   { path: 'mant-productos', component: MantenedorProductosComponent, canActivate:[] },
+  { path: 'mant-envio', component: MantenedorEnvioComponent },
   { path: 'tabla-polera', component: PoleraComponent, canActivate:[]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
