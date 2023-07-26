@@ -12,9 +12,10 @@
 
       <div class="container-info-product">
         <div class="container-price">
-          <span>${{precioP}}</span>
+          <span>{{ precioP | currency:'CLP ':'symbol':'1.0-0' }}</span>
           <i class="fas fa-angle-right"></i>
         </div>
+        
     
         <div class="container-details-product">
           <div class="form-group">
