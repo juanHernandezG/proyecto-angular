@@ -9,12 +9,12 @@ import { LoginService } from '../../login/login.service';
 export class DashboardComponent {
 
 
-  constructor(private loginServic: LoginService) {
+  constructor(public loginService: LoginService) {
 
   }
 
   cerrarSesion(){
-    this.loginServic.logout();
+    this.loginService.logout();
   }
 
 }

@@ -88,3 +88,9 @@ export interface Allproduct{
     precio:number;
     stock:number;
 }
+export interface UIPolera{
+    imagen: string;
+    precio: number;
+    tipo: number;
+    stock: number;
+}
