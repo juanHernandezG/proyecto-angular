@@ -58,3 +58,15 @@ export interface Diseno{
     nombre: string;
     imagen: string;
 }
+
+export interface Producto{
+    idproducto: number;
+    cantidad: number;
+    tipoid: number;
+    color: string;
+    talla: string;
+    disenoid: number;
+    imagenprenda: string;
+    imagendiseno: string;
+    precio: number;
+}

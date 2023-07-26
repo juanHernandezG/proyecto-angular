@@ -79,7 +79,13 @@ export class AppService {
         return response.data;
       })
     );
+
+    
   }
 
+  getPrecioBasePorTipo(idtipo: number): Observable<number> {
+    const url = `${this.apiUrl}/precio/${idtipo}`;
+    return this.http.get<number>(url);
+  }
 
 }

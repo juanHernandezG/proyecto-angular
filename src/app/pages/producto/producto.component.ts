@@ -24,16 +24,37 @@ export class ProductoComponent implements OnInit {
   imagenSeleccionada: string | null = null;
   imagenPredeterminada: string = '';
   archivoSeleccionado: File | null = null;
+  idtipo: number | undefined;
 
   onDesignSelected(event: any) {
     const selectedImagen = event.target.value;
     this.imagenSeleccionada = selectedImagen;
+    if (this.precioP !== undefined) {
+      this.precioP += 7000;
+    }
   }
+
 
   onFileSelected(event: any) {
     this.archivoSeleccionado = event.target.files[0] as File;
     if (this.archivoSeleccionado) {
       this.imagenSeleccionada = URL.createObjectURL(this.archivoSeleccionado);
+    }
+    if (this.precioP !== undefined) {
+      this.precioP += 7000;
+    }
+  }
+
+  getPrecioBase(): void {
+    if (this.idtipo !== undefined) {
+      this.tipoService.getPrecioBasePorTipo(this.idtipo).subscribe(
+        (precioBase: number) => {
+          this.precioP = precioBase; // Establece el precio base obtenido del servicio
+        },
+        (error) => {
+          console.error('Error al obtener el precio base:', error);
+        }
+      );
     }
   }
 
@@ -179,6 +200,19 @@ export class ProductoComponent implements OnInit {
         console.error('Error al obtener las mangalargas:', error);
       }
     );
+
+    this.idtipo = Number(this.route.snapshot.paramMap.get('idtipo'));
+
+    // Obtener el nombre del tipo seleccionado según el idtipo que tienes en la URL
+    this.tipoService.getTipo().subscribe((data: Tipo[]) => {
+      this.tipos = data;
+
+      const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === this.idtipo);
+      this.nombreTipo = tipoSeleccionado ? tipoSeleccionado.nombre : '';
+    });
+
+    // Obtener el precio base del tipoid actual
+    this.getPrecioBase();
 
     
   }
