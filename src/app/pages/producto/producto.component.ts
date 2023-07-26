@@ -23,10 +23,13 @@ export class ProductoComponent implements OnInit {
   colores: Color[] = [];
   imagenSeleccionada: string | null = null;
   imagenPredeterminada: string = '';
+  archivoSeleccionado: File | null = null;
 
   onDesignSelected(event: any) {
-    const selectedImagen = event.target.value;
-    this.imagenSeleccionada = selectedImagen;
+    this.archivoSeleccionado = event.target.files[0] as File;
+    if (this.archivoSeleccionado) {
+      this.imagenSeleccionada = URL.createObjectURL(this.archivoSeleccionado);
+    }
   }
 
   constructor(private tipoService: AppService, private route: ActivatedRoute) {
