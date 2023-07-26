@@ -7,6 +7,7 @@ import { AppService } from '../app.service';
   styleUrls: ['./productoss.component.css']
 })
 export class ProductossComponent implements OnInit {
+
   tipos: any[] = [];
   AppService: any;
 
@@ -26,6 +27,7 @@ export class ProductossComponent implements OnInit {
       this.tipos = data;
       console.log(data);
     });
+
 
   }
 

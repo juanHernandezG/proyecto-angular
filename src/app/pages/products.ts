@@ -43,3 +43,7 @@ export interface Polo{
     talla: string;
     stock: number;
 }
+
+export interface Color{
+    
+}

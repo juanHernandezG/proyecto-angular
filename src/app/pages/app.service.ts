@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Mangalarga, Polera, Poleron, Polo, Tipo } from './products';
+import { Color, Mangalarga, Polera, Poleron, Polo, Tipo } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -48,14 +48,9 @@ export class AppService {
       .pipe(map((res:any)=> res.data));
   }
 
-  getProductoByIdTipo(idTipo: number): Observable<any> {
-    const url = `${this.apiUrl}/producto/${idTipo}`;
-    return this.http.get(url);
-  }
-
-  getColor(idTipo: number): Observable<any> {
-    const url = `${this.apiUrl}/color/${idTipo}`;
-    return this.http.get(url);
+  getColor(idTipo: number){
+    const url = 'http://localhost:3000/color/'+idTipo;
+    return this.http.get<Color>(url)  
   }
 
   getPreciosByIdTipo(idTipo: number): Observable<number[]> {
