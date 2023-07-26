@@ -53,19 +53,24 @@ export class AppService {
     return this.http.get(url);
   }
 
-  getColores(idTipo: number): Observable<any> {
+  getColor(idTipo: number): Observable<any> {
     const url = `${this.apiUrl}/color/${idTipo}`;
     return this.http.get(url);
   }
-  
-  getTalla(idTipo: number): Observable<any> {
-    const url = `${this.apiUrl}/talla/${idTipo}`;
-    return this.http.get(url);
+
+  getPreciosByIdTipo(idTipo: number): Observable<number[]> {
+    const url = `${this.apiUrl}/precio/${idTipo}`;
+    return this.http.get<{
+      message: string | undefined; error: boolean, data: number[] 
+}>(url).pipe(
+      map(response => {
+        if (response.error) {
+          throw new Error(response.message);
+        }
+        return response.data;
+      })
+    );
   }
 
-  getPrecio(idTipo: number): Observable<any> {
-    const url = `${this.apiUrl}/precio/${idTipo}`;
-    return this.http.get(url);
-  }
 
 }

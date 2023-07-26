@@ -11,10 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductoComponent implements OnInit{
 
   AppService: any;
-  poleras: Polera[] = [];
   tipos: Tipo[] = [];
   nombreTipo: string = '';
-  precioPrimeraPolera: number | undefined;
+  public poleras: Polera[] | undefined; // Aquí almacenaremos las poleras obtenidas
+  public precioP: number | undefined;
+  public polerones: Poleron[] | undefined;
+  public polos: Polo[] | undefined;
+  public mangalargas: Mangalarga[] | undefined;
+  public imagen: string = '';
+  public color: string = '';
+  public coloresDisponibles: string[] = [];
 
   constructor(private tipoService: AppService, private route: ActivatedRoute){
     this.tipoService.getPoleras().subscribe((res: any[])=>{
@@ -36,6 +42,9 @@ export class ProductoComponent implements OnInit{
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
+    this.tipoService.getProductoByIdTipo
+    
     this.tipoService.getPoleras().subscribe(data => {
       this.poleras = data;
       console.log(data);
@@ -65,6 +74,115 @@ export class ProductoComponent implements OnInit{
       this.nombreTipo = tipoSeleccionado ? tipoSeleccionado.nombre : '';
       
     });
+
+    this.tipoService.getPoleras().subscribe(
+      (data: Polera[]) => {
+        // La API ha respondido con los datos de las poleras
+        this.poleras = data;
+
+        // Aquí puedes obtener el nombre del tipo seleccionado según el idTipo que tienes en la URL
+        const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
+        const tipoSeleccionado = this.poleras.find((polera: Polera) => polera.tipo === idTipoSeleccionado);
+
+        if (tipoSeleccionado) {
+          this.precioP = tipoSeleccionado.precio;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.precio);
+          console.log('Precio del tipo seleccionado:', this.precioP);
+          this.imagen = tipoSeleccionado.imagen;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.imagen);
+          console.log('Precio del tipo seleccionado:', this.imagen);
+          this.color = tipoSeleccionado.color;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.color);
+          console.log('Precio del tipo seleccionado:', this.color);
+        } else {
+          // Si no se encuentra el tipo seleccionado en la lista de poleras, puedes mostrar un mensaje de error o hacer alguna otra acción.
+          console.error('Tipo de polera no encontrado.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener las poleras:', error);
+      }
+    );
+
+    this.tipoService.getPoleron().subscribe(
+      (data: Poleron[]) => {
+        // La API ha respondido con los datos de las poleras
+        this.polerones = data;
+
+        // Aquí puedes obtener el nombre del tipo seleccionado según el idTipo que tienes en la URL
+        const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
+        const tipoSeleccionado = this.polerones.find((poleron: Poleron) => poleron.tipo === idTipoSeleccionado);
+
+        if (tipoSeleccionado) {
+          this.precioP = tipoSeleccionado.precio;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.precio);
+          console.log('Precio del tipo seleccionado:', this.precioP);
+          this.imagen = tipoSeleccionado.imagen;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.imagen);
+          console.log('Precio del tipo seleccionado:', this.imagen);
+        } else {
+          // Si no se encuentra el tipo seleccionado en la lista de poleras, puedes mostrar un mensaje de error o hacer alguna otra acción.
+          console.error('Tipo de polera no encontrado.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener las poleras:', error);
+      }
+    );
+
+    this.tipoService.getPolo().subscribe(
+      (data: Polo[]) => {
+        // La API ha respondido con los datos de las poleras
+        this.polos = data;
+
+        // Aquí puedes obtener el nombre del tipo seleccionado según el idTipo que tienes en la URL
+        const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
+        const tipoSeleccionado = this.polos.find((polo: Polo) => polo.tipo === idTipoSeleccionado);
+
+        if (tipoSeleccionado) {
+          this.precioP = tipoSeleccionado.precio;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.precio);
+          console.log('Precio del tipo seleccionado:', this.precioP);
+          this.imagen = tipoSeleccionado.imagen;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.imagen);
+          console.log('Precio del tipo seleccionado:', this.imagen);
+        } else {
+          // Si no se encuentra el tipo seleccionado en la lista de poleras, puedes mostrar un mensaje de error o hacer alguna otra acción.
+          console.error('Tipo de polera no encontrado.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener las poleras:', error);
+      }
+    );
+
+    this.tipoService.getMangalarga().subscribe(
+      (data: Mangalarga[]) => {
+        // La API ha respondido con los datos de las poleras
+        this.mangalargas = data;
+
+        // Aquí puedes obtener el nombre del tipo seleccionado según el idTipo que tienes en la URL
+        const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
+        const tipoSeleccionado = this.mangalargas.find((mangalarga: Mangalarga) => mangalarga.tipo === idTipoSeleccionado);
+
+        if (tipoSeleccionado) {
+          this.precioP = tipoSeleccionado.precio;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.precio);
+          console.log('Precio del tipo seleccionado:', this.precioP);
+          this.imagen = tipoSeleccionado.imagen;
+          console.log('Nombre del tipo seleccionado:', tipoSeleccionado.imagen);
+          console.log('Precio del tipo seleccionado:', this.imagen);
+        } else {
+          // Si no se encuentra el tipo seleccionado en la lista de poleras, puedes mostrar un mensaje de error o hacer alguna otra acción.
+          console.error('Tipo de polera no encontrado.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener las poleras:', error);
+      }
+    );
+
+   
 
   }
     
