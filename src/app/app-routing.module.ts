@@ -13,6 +13,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos/mantenedor-productos.component';
+import { LoginGuard } from './pages/login/login.guard';
+import { Polera } from './pages/products';
+import { PoleraComponent } from './pages/admin/polera/polera.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,13 +28,15 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'register', component: RegisterComponent},
   { path:'recuperar', component: RecuperarComponent},
-  { path:'admin', component: DashboardComponent},
-  { path: 'mant-productos', component: MantenedorProductosComponent },
+  { path:'admin', component: DashboardComponent, canActivate:[]},
+  { path: 'mant-productos', component: MantenedorProductosComponent, canActivate:[] },
+  { path: 'tabla-polera', component: PoleraComponent, canActivate:[]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }
