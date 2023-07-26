@@ -1,11 +1,8 @@
-<!-- <div class="card">
+<app-menu-admin></app-menu-admin>
+<div class="card">
+    <app-menu-nav></app-menu-nav>
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-2">Filtrar por:</div>
-            <div class="col-md-4">
-                <input type="text">
-            </div>
-        </div>
+        
         <br>
         <div class="card border-primarey mb-3 text-center">
             <div class="card header">Lista de Productos
@@ -20,11 +17,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let producto of product">
-                                <td><img [src]="producto.imagen" alt="{{producto.tipo}}" height="100"></td>
-                                <td> {{producto.tipo}} </td>
-                                <td> {{producto.precio}} </td>
-                                <td> {{producto.stock}} </td>
+                            <tr *ngFor="let polera of poleras">
+                                <td><img [src]="polera.imagen" alt="Imagen de la polera" width="50" height="50"></td>
+                                <td>{{ polera.tipo}}  </td>
+                                <td>{{polera.precio}}  </td>
+                                <td>{{polera.stock}} </td>
+                                <td><button class="btn btn-success" >Añadir</button></td>
+                                <td><button class="btn btn-danger" >Eliminar</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -32,4 +31,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

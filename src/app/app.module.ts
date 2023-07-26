@@ -31,6 +31,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { CarritoComprasService } from './pages/carrito-compras.service';
 import { PoleraComponent } from './pages/admin/polera/polera.component';
 import { MantenedorEnvioComponent } from './pages/admin/dashboard/mantenedor-envio/mantenedor-envio.component';
+import { MangalargaComponent } from './pages/admin/mangalarga/mangalarga.component';
+import { MenuNavComponent } from './pages/admin/menu-nav/menu-nav.component';
+import { PoleronComponent } from './pages/admin/poleron/poleron.component';
+import { PoloComponent } from './pages/admin/polo/polo.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,10 @@ import { MantenedorEnvioComponent } from './pages/admin/dashboard/mantenedor-env
     MantenedorProductosComponent,
     PoleraComponent,
     MantenedorEnvioComponent,
+    MangalargaComponent,
+    MenuNavComponent,
+    PoleronComponent,
+    PoloComponent,
   ],
   imports: [
     BrowserModule,

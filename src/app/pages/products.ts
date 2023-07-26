@@ -94,3 +94,22 @@ export interface UIPolera{
     tipo: number;
     stock: number;
 }
+
+export interface UIMangalarga{
+    imagen: string;
+    precio: number;
+    tipo: number;
+    stock: number;
+}
+export interface UIPoleron{
+    imagen: string;
+    precio: number;
+    tipo: number;
+    stock: number;
+}
+export interface UIPolo{
+    imagen: string;
+    precio: number;
+    tipo: number;
+    stock: number;
+}
