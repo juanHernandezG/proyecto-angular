@@ -47,3 +47,11 @@ export interface Polo{
 export interface Color{
     
 }
+
+export interface Allproduct{
+    id:number;
+    tipo:string;
+    imagen:string;
+    precio:number;
+    stock:number;
+}

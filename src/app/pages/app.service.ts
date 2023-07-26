@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Mangalarga, Polera, Poleron, Polo, Tipo } from './products';
+import { Color, Mangalarga, Polera, Poleron, Polo, Tipo, Allproduct } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +67,8 @@ export class AppService {
     );
   }
 
-
+  getAllproducts(): Observable<Allproduct[]> {
+    return this.http.get<any[]>('http://localhost:3000/allproduct')
+    .pipe(map((res:any) => res.data));  
+  }
 }
