@@ -13,15 +13,6 @@ export class ProductoComponent implements OnInit {
 
   tipos: Tipo[] = [];
   colores: Color[] = [];
-  producto: Producto = {
-    idproducto: 0,
-    cantidad: 1,
-    color: '',
-    talla: '',
-    imagenprenda: '',
-    imagendiseno: '',
-    precio: 0
-  };
   talla: any[] = [];
   disenos: any[] = [];
   productos: any[] = [];
@@ -44,6 +35,10 @@ export class ProductoComponent implements OnInit {
     const selectedImagen = event.target.value;
     this.imagenSeleccionada = selectedImagen;
     this.incrementarPrecio();
+  }
+
+  agregarCarrito(){
+    
   }
 
 
