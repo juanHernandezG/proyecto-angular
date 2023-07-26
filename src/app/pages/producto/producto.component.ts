@@ -26,6 +26,11 @@ export class ProductoComponent implements OnInit {
   archivoSeleccionado: File | null = null;
 
   onDesignSelected(event: any) {
+    const selectedImagen = event.target.value;
+    this.imagenSeleccionada = selectedImagen;
+  }
+
+  onFileSelected(event: any) {
     this.archivoSeleccionado = event.target.files[0] as File;
     if (this.archivoSeleccionado) {
       this.imagenSeleccionada = URL.createObjectURL(this.archivoSeleccionado);
