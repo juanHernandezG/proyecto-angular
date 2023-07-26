@@ -47,3 +47,14 @@ export interface Polo{
 export interface Color{
     
 }
+
+export interface Talla{
+    idtalla: number;
+    talla: string;
+}
+
+export interface Diseno{
+    iddiseno: number;
+    nombre: string;
+    imagen: string;
+}

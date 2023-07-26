@@ -194,3 +194,19 @@ input[type=file]{
 	line-height: 22px;
 	margin-top: 25px;
 }
+
+.imagen-predeterminada,
+.imagen-seleccionada {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3; /* Ajusta la opacidad de la imagen predeterminada según prefieras */
+}
+
+.imagen-seleccionada {
+  z-index: 1; /* Asegura que la imagen seleccionada esté encima de la imagen predeterminada */
+}
+  
+  

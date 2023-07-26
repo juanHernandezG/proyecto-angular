@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Mangalarga, Polera, Poleron, Polo, Tipo } from './products';
+import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Talla, Tipo } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class AppService {
   public poleron:Poleron[] = [];
 
   public polo:Polo[] = [];
+
+  public talla:Talla[]=[];
+
+  public disenos:Diseno[] = [];
 
 
   constructor(private http: HttpClient) { }
@@ -48,9 +52,19 @@ export class AppService {
       .pipe(map((res:any)=> res.data));
   }
 
-  getColor(idTipo: number){
-    const url = 'http://localhost:3000/color/'+idTipo;
-    return this.http.get<Color>(url)  
+  getTalla(): Observable<Talla[]>{
+    return this.http.get<Talla[]>('http://localhost:3000/talla')
+      .pipe(map((res:any)=> res.data));
+  }
+
+  getColor(idTipo: number): Observable<Color[]> {
+    const url = `http://localhost:3000/color/${idTipo}`;
+    return this.http.get<Color[]>(url);
+  }
+
+  getDiseno(): Observable<Diseno[]>{
+    return this.http.get<Diseno[]>('http://localhost:3000/diseno')
+      .pipe(map((res:any)=> res.data));
   }
 
   getPreciosByIdTipo(idTipo: number): Observable<number[]> {

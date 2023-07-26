@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Color, Mangalarga, Polera, Poleron, Polo, Tipo } from '../products';
+import { Color, Mangalarga, Polera, Poleron, Polo, Talla, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductoComponent implements OnInit {
 
   tipos: Tipo[] = [];
+  talla: any[] = [];
+  disenos: any[] = [];
   nombreTipo: string = '';
   public poleras: Polera[] | undefined;
   public precioP: number | undefined;
@@ -19,6 +21,13 @@ export class ProductoComponent implements OnInit {
   public mangalargas: Mangalarga[] | undefined;
   public imagen: string = '';
   colores: Color[] = [];
+  imagenSeleccionada: string | null = null;
+  imagenPredeterminada: string = '';
+
+  onDesignSelected(event: any) {
+    const selectedImagen = event.target.value;
+    this.imagenSeleccionada = selectedImagen;
+  }
 
   constructor(private tipoService: AppService, private route: ActivatedRoute) {
     this.tipoService.getPoleras().subscribe(
@@ -36,6 +45,20 @@ export class ProductoComponent implements OnInit {
       },
       err => console.log(err)
     );
+
+    this.tipoService.getTalla().subscribe((res: any[])=>{
+      this.tipoService.products = res;
+      console.log(this.tipoService.products);
+    },
+    err => console.log(err)
+    ) 
+
+    this.tipoService.getDiseno().subscribe((res: any[])=>{
+      this.tipoService.disenos = res;
+      console.log(this.tipoService.disenos);
+    },
+    err => console.log(err)
+    )
   }
 
   ngOnInit(): void {
@@ -49,6 +72,16 @@ export class ProductoComponent implements OnInit {
       console.log(data);
     });
 
+    this.tipoService.getTalla().subscribe(data => {
+      this.talla = data;
+      console.log(data);
+    });
+
+    this.tipoService.getDiseno().subscribe(data => {
+      this.disenos = data;
+      console.log(data);
+    })
+
     this.tipoService.getTipo().subscribe((data: Tipo[]) => {
       this.tipos = data;
 
@@ -56,6 +89,7 @@ export class ProductoComponent implements OnInit {
       const idTipoSeleccionado = Number(this.route.snapshot.paramMap.get('idtipo'));
       const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === idTipoSeleccionado);
       this.nombreTipo = tipoSeleccionado ? tipoSeleccionado.nombre : '';
+      this.imagenPredeterminada = tipoSeleccionado ? tipoSeleccionado.imagen: '';
     });
 
     this.tipoService.getPoleras().subscribe(
@@ -137,5 +171,7 @@ export class ProductoComponent implements OnInit {
         console.error('Error al obtener las mangalargas:', error);
       }
     );
+
+    
   }
 }
