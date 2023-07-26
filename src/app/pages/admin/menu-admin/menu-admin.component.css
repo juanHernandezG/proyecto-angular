@@ -1,0 +1,43 @@
+.custom-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .custom-btn:hover {
+    background-color: #0056b3;
+  }
+
+
+  .offcanvas {
+    background-color: #f8f9fa; 
+  }
+
+  .offcanvas-header {
+    background-color: #007bff; 
+    color: #fff; 
+  }
+
+  .offcanvas-title {
+    font-size: 24px;
+  }
+
+  .offcanvas-body {
+    padding: 20px;
+  }
+
+  .offcanvas-body a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .offcanvas-body a:hover {
+    color: #007bff;
+  }
