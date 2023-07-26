@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Color, Mangalarga, Polera, Poleron, Polo, Talla, Tipo } from '../products';
+import { Color, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
+import { CarritoComprasService } from '../carrito-compras.service';
 
 @Component({
   selector: 'app-producto',
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductoComponent implements OnInit {
 
   tipos: Tipo[] = [];
+  producto!: Producto;
   talla: any[] = [];
   disenos: any[] = [];
   productos: any[] = [];
@@ -26,13 +28,12 @@ export class ProductoComponent implements OnInit {
   imagenPredeterminada: string = '';
   archivoSeleccionado: File | null = null;
   idtipo: number | undefined;
+  incrementadoPrecio = false;
 
   onDesignSelected(event: any) {
     const selectedImagen = event.target.value;
     this.imagenSeleccionada = selectedImagen;
-    if (this.precioP !== undefined) {
-      this.precioP += 7000;
-    }
+    this.incrementarPrecio();
   }
 
 
@@ -41,9 +42,18 @@ export class ProductoComponent implements OnInit {
     if (this.archivoSeleccionado) {
       this.imagenSeleccionada = URL.createObjectURL(this.archivoSeleccionado);
     }
-    if (this.precioP !== undefined) {
+    this.incrementarPrecio();
+  }
+
+  private incrementarPrecio() {
+    if (!this.incrementadoPrecio && this.precioP !== undefined) {
       this.precioP += 7000;
+      this.incrementadoPrecio = true;
     }
+  }
+
+  onAddToCart() {
+    this.carritoService.agregarAlCarrito(this.producto);
   }
 
   getPrecioBase(): void {
@@ -59,7 +69,7 @@ export class ProductoComponent implements OnInit {
     }
   }
 
-  constructor(private tipoService: AppService, private route: ActivatedRoute) {
+  constructor(private tipoService: AppService, private route: ActivatedRoute, private carritoService: CarritoComprasService) {
     this.tipoService.getPoleras().subscribe(
       (res: Polera[]) => {
         this.poleras = res;
