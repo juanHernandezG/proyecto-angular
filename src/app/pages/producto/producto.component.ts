@@ -13,6 +13,7 @@ export class ProductoComponent implements OnInit {
   tipos: Tipo[] = [];
   talla: any[] = [];
   disenos: any[] = [];
+  productos: any[] = [];
   nombreTipo: string = '';
   public poleras: Polera[] | undefined;
   public precioP: number | undefined;
