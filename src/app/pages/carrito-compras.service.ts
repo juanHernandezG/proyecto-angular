@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './products';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +11,26 @@ export class CarritoComprasService {
 
   private apiUrl = 'http://localhost/3000';
 
-  public producto:Producto[] = [];
+  private carrito: Producto[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http:HttpClient) { }
 
-  getProductos(): Observable<Producto[]>{
-    return this.http.get<Producto[]>('http://localhost:3000/producto')
-      .pipe(map((res:any)=> res.data));
+  getCarrito(): Producto[] {
+    return this.carrito;
   }
 
-  eliminarProducto(id: number): Observable<void> {
-    return this.http.delete<void>('http://localhost:3000/borrarproducto/' + id);
+  agregarAlCarrito(producto: Producto): Observable<any> {
+    const url = "http://localhost:3000/agregarproducto" ;
+    return this.http.post(url, producto);
+  }
+
+
+  eliminarDelCarrito(idproducto: number): void {
+    this.carrito = this.carrito.filter(p => p.idproducto !== idproducto);
+  }
+
+  vaciarCarrito(): void {
+    this.carrito = [];
   }
   
 }

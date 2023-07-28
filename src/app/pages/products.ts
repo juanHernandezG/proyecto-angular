@@ -71,15 +71,18 @@ export interface Diseno{
     imagen: string;
 }
 
-export interface Producto{
+
+export interface Producto {
     idproducto: number;
-    cantidad: number;
-    color: string;
-    talla: string;
-    imagenprenda: string;
-    imagendiseno: string;
+    tipo: string;
     precio: number;
-}
+    talla: string;
+    color: string;
+    cantidad: number;
+    imagen: string;
+    diseno: string;
+  }
+  
 
 export interface Allproduct{
     id:number;

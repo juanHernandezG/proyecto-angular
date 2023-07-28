@@ -49,13 +49,13 @@
         
         <div class="container-add-cart">
           <div class="container-quantity">
-            <input type="number" placeholder="1" [value]="cantidadProductos" min="1" class="input-quantity">
+            <input type="number" placeholder="1" [(ngModel)]="cantidadProductos" min="1" class="input-quantity" [readonly]="!colorSeleccionado || !tallaSeleccionada">
             <div class="btn-increment-decrement">
-              <i class="fas fa-chevron-up" id="increment"></i>
-              <i class="fas fa-chevron-down" id="decrement"></i>
+              <i class="fas fa-chevron-up" id="increment" (click)="incrementarCantidad()" [style.pointerEvents]="colorSeleccionado && tallaSeleccionada ? 'auto' : 'none'"></i>
+              <i class="fas fa-chevron-down" id="decrement" (click)="decrementarCantidad()" [style.pointerEvents]="colorSeleccionado && tallaSeleccionada ? 'auto' : 'none'"></i>
             </div>
-          </div>
-          <button class="btn-add-to-cart" routerLink="/carrito">
+          </div>          
+          <button class="btn-add-to-cart" (click)="agregarAlCarrito()">
             <i class="fas fa-plus"></i>
             Añadir al carrito
           </button>

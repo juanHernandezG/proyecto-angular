@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Prod, Tipo } from '../products';
+import { Prod, Producto, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
 import { CarritoComprasService } from '../carrito-compras.service';
 
@@ -32,6 +32,7 @@ export class ProductoComponent implements OnInit {
   stockTotalPorColorYTalla: number = 0;
   tallaSeleccionadaAnterior: string | null = null;
   precioBase: number | undefined;
+  carrito: Producto[] = [];
   
 
   constructor(private tipoService: AppService, private route: ActivatedRoute, private carritoService: CarritoComprasService) {
@@ -142,10 +143,14 @@ export class ProductoComponent implements OnInit {
   // Agrega esta función en el componente
   onColorSelected(): void {
     if (this.colorSeleccionado !== null) {
+      // Restablecer la cantidad a 1 cuando se cambie de color
+      this.cantidadProductos = 1;
+  
       // Guardar la talla seleccionada actual antes de cambiar el color
       this.tallaSeleccionadaAnterior = this.tallaSeleccionada;
       // Reiniciar la talla seleccionada actual
       this.tallaSeleccionada = null;
+  
       // Actualizar la imagen predeterminada con la imagen del producto seleccionado para el color
       const productoSeleccionado = this.prods.find(
         prod => prod.color === this.colorSeleccionado && prod.tipo === this.idtipo
@@ -218,5 +223,75 @@ export class ProductoComponent implements OnInit {
     }
   }  
   
+  incrementarCantidad(): void {
+    if (this.colorSeleccionado !== null && this.tallaSeleccionada !== null && this.cantidadProductos < this.stockTotalPorColorYTalla) {
+      this.cantidadProductos++;
+    }
+  }
+
+  decrementarCantidad(): void {
+    if (this.colorSeleccionado !== null && this.tallaSeleccionada !== null && this.cantidadProductos > 1) {
+      this.cantidadProductos--;
+    }
+  }
+
+  agregarAlCarrito(): void {
+    if (
+      this.colorSeleccionado &&
+      this.tallaSeleccionada &&
+      this.cantidadProductos > 0 &&
+      this.precioSegunTipo &&
+      this.imagenSeleccionada
+    ) {
+      // Buscar si el producto ya existe en el carrito
+      const productoExistente = this.carrito.find(
+        (producto) =>
+          producto.tipo === this.nombreTipo &&
+          producto.talla === this.tallaSeleccionada &&
+          producto.color === this.colorSeleccionado &&
+          producto.diseno === this.imagenSeleccionada
+      );
   
+      if (productoExistente) {
+        // Si el producto ya existe en el carrito, actualizar la cantidad
+        productoExistente.cantidad += this.cantidadProductos;
+      } else {
+        // Si el producto no existe en el carrito, agregarlo al carrito
+        const nuevoProducto: Producto = {
+          idproducto: this.carrito.length + 1, // Asignar un nuevo id al producto en el carrito
+          tipo: this.nombreTipo,
+          precio: this.precioSegunTipo,
+          talla: this.tallaSeleccionada,
+          color: this.colorSeleccionado,
+          cantidad: this.cantidadProductos,
+          imagen: this.imagenPredeterminada,
+          diseno: this.imagenSeleccionada,
+        };
+  
+        // Llamar al servicio para agregar el producto al carrito en el servidor
+        this.carritoService.agregarAlCarrito(nuevoProducto).subscribe(
+          (response) => {
+            // El producto se ha agregado correctamente al carrito en el servidor
+            // Puedes realizar acciones adicionales si es necesario, como mostrar un mensaje de éxito.
+          },
+          (error) => {
+            console.log(error); // Imprime el error en la consola
+            // Ocurrió un error al agregar el producto al carrito en el servidor
+            // Puedes mostrar un mensaje de error o realizar acciones para manejar el error.
+          }
+        );        
+  
+        this.carrito.push(nuevoProducto);
+      }
+  
+      // Reiniciar valores para el próximo producto
+      this.colorSeleccionado = null;
+      this.tallaSeleccionada = null;
+      this.imagenSeleccionada = null;
+      this.cantidadProductos = 1;
+    }
+  }
+  
+  
+
 }
