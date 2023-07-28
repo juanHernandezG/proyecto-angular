@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './products';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 
 
 @Injectable({
@@ -40,6 +40,12 @@ export class CarritoComprasService {
 
   vaciarCarrito(): void {
     this.carrito = [];
+  }
+
+  actualizarStock(idtipo: number, talla: string, color: string, cantidadProductos: number): Observable<any> {
+    const url = `${this.apiUrl}/actualizarstock`;
+    const data = { idtipo, talla, color, stock: cantidadProductos };
+    return this.http.post(url, data);
   }
   
 }

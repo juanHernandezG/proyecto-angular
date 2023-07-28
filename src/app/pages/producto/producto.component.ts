@@ -242,17 +242,16 @@ export class ProductoComponent implements OnInit {
       this.cantidadProductos > 0 &&
       this.precioSegunTipo &&
       this.imagenSeleccionada &&
-      this.idtipo !== null // Comprobamos que idtipo tenga un valor válido antes de continuar.
+      this.idtipo !== null
     ) {
       // Buscar si el producto ya existe en el carrito
       const productoExistente = this.carrito.find(
         (producto) =>
-          producto.idtipo === this.idtipo &&
           producto.talla === this.tallaSeleccionada &&
           producto.color === this.colorSeleccionado &&
           producto.diseno === this.imagenSeleccionada
       );
-
+  
       if (productoExistente) {
         // Si el producto ya existe en el carrito, actualizar la cantidad
         productoExistente.cantidad += this.cantidadProductos;
@@ -268,7 +267,7 @@ export class ProductoComponent implements OnInit {
           imagen: this.imagenPredeterminada,
           diseno: this.imagenSeleccionada,
         };
-
+  
         // Llamar al servicio para agregar el producto al carrito en el servidor
         this.carritoService.agregarAlCarrito(nuevoProducto).subscribe(
           (response) => {
@@ -281,10 +280,23 @@ export class ProductoComponent implements OnInit {
             // Puedes mostrar un mensaje de error o realizar acciones para manejar el error.
           }
         );
-
+  
         this.carrito.push(nuevoProducto);
       }
-
+  
+      // Llamar al servicio para actualizar el stock del producto en el servidor
+      this.carritoService.actualizarStock(this.idtipo, this.tallaSeleccionada, this.colorSeleccionado, this.cantidadProductos).subscribe(
+        (response) => {
+          // El stock del producto se ha actualizado correctamente en el servidor
+          // Puedes realizar acciones adicionales si es necesario.
+        },
+        (error) => {
+          console.log(error); // Imprime el error en la consola
+          // Ocurrió un error al actualizar el stock del producto en el servidor
+          // Puedes mostrar un mensaje de error o realizar acciones para manejar el error.
+        }
+      );
+  
       // Reiniciar valores para el próximo producto
       this.colorSeleccionado = null;
       this.tallaSeleccionada = null;
@@ -293,6 +305,5 @@ export class ProductoComponent implements OnInit {
     }
   }
   
-  
-
+ 
 }
