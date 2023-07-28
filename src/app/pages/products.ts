@@ -74,7 +74,7 @@ export interface Diseno{
 
 export interface Producto {
     idproducto: number;
-    tipo: string;
+    idtipo: number;
     precio: number;
     talla: string;
     color: string;

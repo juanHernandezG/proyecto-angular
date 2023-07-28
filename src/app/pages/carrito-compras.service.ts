@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './products';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ export class CarritoComprasService {
 
   private apiUrl = 'http://localhost/3000';
 
-  private carrito: Producto[] = [];
+  public carrito: Producto[] = [];
 
   constructor(private http:HttpClient) { }
 
@@ -19,12 +19,21 @@ export class CarritoComprasService {
     return this.carrito;
   }
 
+  getCarro(): Observable<Producto[]>{
+    return this.http.get<Producto[]>('http://localhost:3000/producto')
+      .pipe(map((res:any)=> res.data));
+  }
+
   agregarAlCarrito(producto: Producto): Observable<any> {
     const url = "http://localhost:3000/agregarproducto" ;
     return this.http.post(url, producto);
   }
 
-
+  delete(idproducto: number): Observable<number> {
+    const url = "http://localhost:3000/borrarproducto/"+idproducto;
+    return this.http.delete<number>(url);
+  }
+  
   eliminarDelCarrito(idproducto: number): void {
     this.carrito = this.carrito.filter(p => p.idproducto !== idproducto);
   }

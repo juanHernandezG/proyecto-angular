@@ -17,7 +17,7 @@ export class ProductoComponent implements OnInit {
   imagenSeleccionada: string | null = null;
   imagenPredeterminada: string = '';
   archivoSeleccionado: File | null = null;
-  idtipo: number | undefined;
+  idtipo: number = 0;
   cantidadProductos = 1;
   precioSegunTipo: number | undefined;
   colores: string[] = [];
@@ -241,17 +241,18 @@ export class ProductoComponent implements OnInit {
       this.tallaSeleccionada &&
       this.cantidadProductos > 0 &&
       this.precioSegunTipo &&
-      this.imagenSeleccionada
+      this.imagenSeleccionada &&
+      this.idtipo !== null // Comprobamos que idtipo tenga un valor válido antes de continuar.
     ) {
       // Buscar si el producto ya existe en el carrito
       const productoExistente = this.carrito.find(
         (producto) =>
-          producto.tipo === this.nombreTipo &&
+          producto.idtipo === this.idtipo &&
           producto.talla === this.tallaSeleccionada &&
           producto.color === this.colorSeleccionado &&
           producto.diseno === this.imagenSeleccionada
       );
-  
+
       if (productoExistente) {
         // Si el producto ya existe en el carrito, actualizar la cantidad
         productoExistente.cantidad += this.cantidadProductos;
@@ -259,7 +260,7 @@ export class ProductoComponent implements OnInit {
         // Si el producto no existe en el carrito, agregarlo al carrito
         const nuevoProducto: Producto = {
           idproducto: this.carrito.length + 1, // Asignar un nuevo id al producto en el carrito
-          tipo: this.nombreTipo,
+          idtipo: this.idtipo,
           precio: this.precioSegunTipo,
           talla: this.tallaSeleccionada,
           color: this.colorSeleccionado,
@@ -267,7 +268,7 @@ export class ProductoComponent implements OnInit {
           imagen: this.imagenPredeterminada,
           diseno: this.imagenSeleccionada,
         };
-  
+
         // Llamar al servicio para agregar el producto al carrito en el servidor
         this.carritoService.agregarAlCarrito(nuevoProducto).subscribe(
           (response) => {
@@ -279,11 +280,11 @@ export class ProductoComponent implements OnInit {
             // Ocurrió un error al agregar el producto al carrito en el servidor
             // Puedes mostrar un mensaje de error o realizar acciones para manejar el error.
           }
-        );        
-  
+        );
+
         this.carrito.push(nuevoProducto);
       }
-  
+
       // Reiniciar valores para el próximo producto
       this.colorSeleccionado = null;
       this.tallaSeleccionada = null;

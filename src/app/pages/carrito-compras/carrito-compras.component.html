@@ -1,33 +1,30 @@
 <div class="container">
 	<h1>Carrito</h1>
-  
 	<div class="cart">
 	  <div class="products">
-		<!-- Mueve el *ngFor aquí dentro para mostrar los precios de todos los productos -->
 		<div class="product" *ngFor="let producto of productos">
-		  <img src="{{producto.imagen}">
+		  <img src="{{producto.imagen}}">
 		  <img src="{{producto.diseno}}">
 		  <div class="product-info">
 			<h3 class="product-name">Polera</h3>
 			<h4 class="product-price">{{ producto.precio | currency:'CLP ':'symbol':'1.0-0' }}</h4>
 			<h4 class="product-offer">Talla: {{ producto.talla }}</h4>
 			<h4 class="product-offer">Color: {{ producto.color }}</h4>
+			<h4 class="product-offer">Cantidad: {{ producto.cantidad }}</h4>
 			<div class="product-remove" (click)="eliminarProducto(producto)">
-			  <i class="fa-solid fa-trash"></i>
-			</div>
+				<i class="fa-solid fa-trash"></i>
+			  </div>
 		  </div>
 		</div>
 	  </div>
   
 	  <div class="cart-total">
-		<!-- Agrega la lógica para mostrar el precio total y el número de ítems del carrito -->
 		<p>
 		  <span>Precio Total</span>
-		  <span>{{ precioTotal | currency:'CLP ':'symbol':'1.0-0' }}</span> <!-- Reemplaza este valor con la lógica para calcular el precio total -->
-		</p>
+		  <span>{{ precioTotal | currency:'CLP ':'symbol':'1.0-0' }}</span>
 		<p>
 		  <span>Número de ítems</span>
-		  <span>{{ productos.length }}</span> <!-- Reemplaza este valor con la lógica para calcular el número de ítems -->
+		  <span>{{ productos.length }}</span>
 		</p>
 		<a href="#" routerLink="/comprar">Confirmar Productos</a>
 	  </div>
