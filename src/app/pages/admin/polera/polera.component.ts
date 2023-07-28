@@ -7,16 +7,12 @@ import { AppService } from '../../app.service';
   templateUrl: './polera.component.html',
   styleUrls: ['./polera.component.css']
 })
-export class PoleraComponent implements OnInit {
+export class PoleraComponent  {
   poleras: UIPolera[] = [];
 
   constructor(public appService: AppService){}
 
-  ngOnInit(): void {
-    this.appService.getAllpoleras().subscribe(data =>{
-      this.poleras = data;
-    });
-  }
+
 
   
 }

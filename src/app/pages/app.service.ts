@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml } from './products';
+import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -116,24 +116,5 @@ export class AppService {
     .pipe(map((res:any) => res.data));  
   }
 
-  getAllpoleras(): Observable<UIPolera[]> {
-    return this.http.get<UIPolera[]>('http://localhost:3000/allpoleras')
-    .pipe(map((res:any) => res.data));
-  }
-
-  getAllmangalarga(): Observable<UIMangalarga[]> {
-    return this.http.get<UIMangalarga[]>('http://localhost:3000/allmangalarga')
-    .pipe(map((res:any) => res.data));
-  }
-
-  getAllpoleron(): Observable<UIPoleron[]> {
-    return this.http.get<UIPoleron[]>('http://localhost:3000/allpoleron')
-    .pipe(map((res:any) => res.data));
-  }
-
-  getAllpolo(): Observable<UIPolo[]>{
-    return this.http.get<UIPolo[]>('http://localhost:3000/allpolo')
-    .pipe(map((res:any) => res.data));
-  }
 
 }

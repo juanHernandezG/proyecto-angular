@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Allproduct, Color, Mangalarga, Polera, Poleron, Polo, Prod, Producto, Talla, Tipo } from '../products';
+import { Prod, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
 import { CarritoComprasService } from '../carrito-compras.service';
 
