@@ -94,3 +94,13 @@ export interface UIPolera{
     tipo: number;
     stock: number;
 }
+
+export interface Prod{
+    idprod: number;
+    tipo: number;
+    color: string;
+    talla: string;
+    precio: number;
+    stock: number;
+    imagen: string;
+}

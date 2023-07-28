@@ -4,15 +4,16 @@
     <main>
       <div class="container-img">
         <img [src]="imagenPredeterminada" alt="Imagen predeterminada">
-        <div class="imagen-seleccionada-container" *ngIf="imagenSeleccionada !== null">
-          <img [src]="imagenSeleccionada" alt="Imagen seleccionada">
+        <div class="imagen-seleccionada-container" *ngIf="imagenSeleccionada">
+          <img [src]="imagenSeleccionada" alt="Imagen del producto">
         </div>
       </div>
+      
       
 
       <div class="container-info-product">
         <div class="container-price">
-          <span>{{ precioP | currency:'CLP ':'symbol':'1.0-0' }}</span>
+          <span>{{ precioSegunTipo | currency:'CLP ':'symbol':'1.0-0' }}</span>
           <i class="fas fa-angle-right"></i>
         </div>
         
@@ -20,28 +21,29 @@
         <div class="container-details-product">
           <div class="form-group">
             <label for="colour">Color</label>
-            <select name="colour" id="colour" (change)="onColorSelected($event)">
-              <option disabled selected value="">Elige un color</option>
-              <option *ngFor="let color of colores" [value]="color.color">{{ color.color }}</option>
+            <select name="colour" id="colour" [(ngModel)]="colorSeleccionado" (ngModelChange)="onColorSelected()">
+              <option disabled [ngValue]="null">Elige un color</option>
+              <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="size">Talla</label>
-            <select name="size" id="size">
-              <option disabled selected value="">Elige una talla</option>
-              <option *ngFor="let talla of talla" [value]="talla.talla">{{ talla.talla }}</option>
+            <select name="size" id="size" [(ngModel)]="tallaSeleccionada" [disabled]="!colorSeleccionado" (ngModelChange)="onTallaSelected()">
+              <option disabled [ngValue]="null">Elige una talla</option>
+              <option *ngFor="let talla of getTallasForColor(colorSeleccionado)" [value]="talla">{{ talla }}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="design">Diseño</label>
-            <select (change)="onDesignSelected($event)">
-              <option disabled selected value="">Escoge un diseño</option>
+            <select (change)="onDesignSelected()" [(ngModel)]="imagenSeleccionada">
+              <option disabled selected value="null">Escoge un diseño</option>
               <option *ngFor="let diseno of disenos" [value]="diseno.imagen">{{ diseno.nombre }}</option>
             </select>
           </div>
+          
           <div class="form-group">
             <label for="image">Agregar diseño</label>
-            <input type="file" id="image" name="image" (change)="onFileSelected($event)">
+            <input type="file" id="image" name="image">
           </div>
         </div>
         
@@ -49,8 +51,8 @@
           <div class="container-quantity">
             <input type="number" placeholder="1" [value]="cantidadProductos" min="1" class="input-quantity">
             <div class="btn-increment-decrement">
-              <i class="fas fa-chevron-up" id="increment" (click)="incrementarCantidad()"></i>
-              <i class="fas fa-chevron-down" id="decrement" (click)="decrementarCantidad()"></i>
+              <i class="fas fa-chevron-up" id="increment"></i>
+              <i class="fas fa-chevron-down" id="decrement"></i>
             </div>
           </div>
           <button class="btn-add-to-cart" routerLink="/carrito">
@@ -59,8 +61,8 @@
           </button>
         </div>
         <div class="container-stock">
-          <span>Disponibles: {{stockP}}</span>
-        </div>
+          <span>Disponibles: {{ stockTotalPorColorYTalla }}</span>
+        </div>        
       </div>
     </main>
   </body>

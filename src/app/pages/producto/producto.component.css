@@ -16,7 +16,7 @@ main {
 .container-stock{
 	color: white;
 	font-size: 1.5rem;
-	margin-left: 1rem;
+	margin-left: 0rem;
 }
 
 .container-img {
@@ -99,6 +99,7 @@ input[type=file]{
 	gap: 20px;
 	margin-bottom: 15px;
 }
+
 
 .form-group label {
 	width: 12rem;
