@@ -17,6 +17,9 @@ import { MantenedorProductosComponent } from './pages/admin/mantenedor-productos
 import { LoginGuard } from './pages/login/login.guard';
 import { Polera } from './pages/products';
 import { PoleraComponent } from './pages/admin/polera/polera.component';
+import { MangalargaComponent } from './pages/admin/mangalarga/mangalarga.component';
+import { PoleronComponent } from './pages/admin/poleron/poleron.component';
+import { PoloComponent } from './pages/admin/polo/polo.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,16 +32,19 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'register', component: RegisterComponent},
   { path:'recuperar', component: RecuperarComponent},
-  { path:'admin', component: DashboardComponent, canActivate:[]},
-  { path: 'mant-productos', component: MantenedorProductosComponent, canActivate:[] },
-  { path: 'mant-envio', component: MantenedorEnvioComponent },
-  { path: 'tabla-polera', component: PoleraComponent, canActivate:[]},
+  { path:'admin', component: DashboardComponent, canActivate:[LoginGuard]},
+  { path: 'mant-productos', component: MantenedorProductosComponent, canActivate:[LoginGuard] },
+  { path: 'mant-envio', component: MantenedorEnvioComponent, canActivate:[LoginGuard] },
+  { path: 'tabla-polera', component: PoleraComponent, canActivate:[LoginGuard]},
+  { path: 'tabla-mangalarga', component: MangalargaComponent, canActivate:[LoginGuard]},
+  { path: 'tabla-poleron', component: PoleronComponent, canActivate:[LoginGuard]},
+  { path: 'tabla-polo', component: PoloComponent, canActivate:[LoginGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [LoginGuard]
 })
 export class AppRoutingModule { }

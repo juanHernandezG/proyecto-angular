@@ -1,0 +1,27 @@
+
+nav{
+    height: 6em;
+    background-color: rgb(247, 247, 251);
+}
+img{
+    width: 18rem;
+    cursor: pointer;
+}
+a{
+    font-family: HeyBunnys;
+    font-size: 2rem;
+    color: rgb(17, 1, 241);
+    margin-right: 3rem;
+}
+a:hover, a.active{ 
+    color: #000000;
+}
+.contenedoritems{
+    width: 38rem;
+    display: inline-flex;
+}
+
+.carrito{
+    width: 4rem;
+    height: 4rem;
+}

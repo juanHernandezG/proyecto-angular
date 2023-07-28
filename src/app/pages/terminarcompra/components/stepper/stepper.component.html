@@ -1,24 +1,9 @@
-<!-- <div class="container">
-    <div class="steps">
-        <span class="circle " [ngClass]="{active: actualStep===1}" >1</span>        
-        <span class="circle"  [ngClass]="{active: actualStep===2}">2</span>
-        <span class="circle"  [ngClass]="{active: actualStep===3}">3</span>
-        <span class="circle"  [ngClass]="{active: actualStep===4}">4</span>
-        <div class="progress-bar">
-            <span class="indicator"></span>
-        </div>
-    </div>
-</div> -->
 
-<div class="container">
-    <button mat-raised-button (click)="isEditable = !isEditable">
-        {{ !isEditable ? 'Editar' : 'No Editar'}}
-    </button>
-    
+<div class="container"> 
     <mat-stepper linear #stepper>
         <mat-step [stepControl] = "firstFormGroup" [editable]="isEditable">
             <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel> Paso 1 </ng-template>
+                <ng-template matStepLabel> Datos Personales </ng-template>
                 <mat-form-field>
                     <mat-label>Nombre</mat-label>
                     <input matInput formControlName="firstCtrl" placeholder="Nombre" required>
@@ -39,13 +24,13 @@
                     <input matInput formControlName="firstCtrl3" placeholder="Correo" required>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext>Siguiente</button>
+                    <button id="hola" mat-button matStepperNext>Siguiente</button>
                 </div>
             </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup" [editable]="isEditable" >
             <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Paso 2</ng-template>
+                <ng-template matStepLabel> Datos de Envio</ng-template>
                 <mat-form-field>
                     <mat-label>Ciudad</mat-label>
                     <input matInput formControlName="secondCtrl" placeholder="Chillan" required>
@@ -61,18 +46,19 @@
                     <input matInput formControlName="secondCtrl3" placeholder="912345678" required>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperPrevious>Atrás</button>
-                    <button mat-button matStepperNext>Siguiente</button>
-                </div>
+                    <button mat-raised-button (click)="isEditable = !isEditable">
+                        {{ !isEditable ? 'Editar' : 'No Editar'}}
+                    </button>
+                    <button id="hola" mat-button matStepperNext>Siguiente</button>
+                    </div>
             </form>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>Faltaria un último paso</p>
-            <div>
-                <button mat-button matStepperPrevious>Atrás</button>
-                <button mat-button>Pagar</button>
-            </div>
+            <ng-template matStepLabel>Pagar</ng-template>
+            <div #paypal></div>
+            <button mat-raised-button (click)="isEditable = !isEditable">
+                {{ !isEditable ? 'Editar' : 'No Editar'}}
+            </button>
         </mat-step>
     </mat-stepper>
 </div>

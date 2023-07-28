@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgIf, NgFor} from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 import { AppService } from '../../app.service';
-import { Allproduct } from '../../products';
+import { Allproduct, Polera, UIPolera } from '../../products';
 
 @Component({
   selector: 'app-mantenedor-productos',
@@ -12,7 +12,7 @@ import { Allproduct } from '../../products';
 export class MantenedorProductosComponent implements  OnInit {
 
   product: Allproduct[] = [];
-
+  
   constructor(private appService: AppService){}
 
   ngOnInit(): void {
