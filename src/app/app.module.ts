@@ -35,6 +35,7 @@ import { MangalargaComponent } from './pages/admin/mangalarga/mangalarga.compone
 import { MenuNavComponent } from './pages/admin/menu-nav/menu-nav.component';
 import { PoleronComponent } from './pages/admin/poleron/poleron.component';
 import { PoloComponent } from './pages/admin/polo/polo.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { PoloComponent } from './pages/admin/polo/polo.component';
     MatInputModule,
     MatStepperModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [AppService, CarritoComprasService],
   bootstrap: [AppComponent]

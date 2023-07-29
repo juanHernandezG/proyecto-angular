@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoComprasService } from '../carrito-compras.service';
 import { Producto } from '../products';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-carrito-compras',
