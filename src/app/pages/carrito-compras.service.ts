@@ -54,4 +54,10 @@ export class CarritoComprasService {
     const url = `http://localhost:3000/stock?idtipo=${idtipo}&color=${color}&talla=${talla}`;
     return this.http.get<number>(url);
   }
+
+  getSTallaPorColor(idtipo: number, color: string): Observable<number[]> {
+    const url = `http://localhost:3000/tallacolor?idtipo=${idtipo}&color=${color}`;
+    return this.http.get<number[]>(url);
+  }
+
 }

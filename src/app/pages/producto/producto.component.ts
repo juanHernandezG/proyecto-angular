@@ -275,6 +275,7 @@ export class ProductoComponent implements OnInit {
         // Llamar al servicio para agregar el producto al carrito en el servidor
         this.carritoService.agregarAlCarrito(nuevoProducto).subscribe(
           (response) => {
+            this.stockTotalPorColorYTalla -= this.cantidadProductos;
             // El producto se ha agregado correctamente al carrito en el servidor
             // Puedes realizar acciones adicionales si es necesario, como mostrar un mensaje de éxito.
           },
@@ -306,6 +307,7 @@ export class ProductoComponent implements OnInit {
       this.tallaSeleccionada = null;
       this.imagenSeleccionada = null;
       this.cantidadProductos = 1;
+
     }
   }
 
