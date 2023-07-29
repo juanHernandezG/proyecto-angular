@@ -15,10 +15,6 @@ export class CarritoComprasService {
 
   constructor(private http:HttpClient) { }
 
-  getCarrito(): Producto[] {
-    return this.carrito;
-  }
-
   getCarro(): Observable<Producto[]>{
     return this.http.get<Producto[]>('http://localhost:3000/producto')
       .pipe(map((res:any)=> res.data));
@@ -41,11 +37,17 @@ export class CarritoComprasService {
   vaciarCarrito(): void {
     this.carrito = [];
   }
+  
+  actualizarStock(tipo: number, color: string, talla: string, nuevoStock: number): Observable<any> {
+    const body = {
+      tipo: tipo,
+      color: color,
+      talla: talla,
+      stock: nuevoStock
+    };
 
-  actualizarStock(idtipo: number, talla: string, color: string, cantidadProductos: number): Observable<any> {
-    const url = `${this.apiUrl}/actualizarstock`;
-    const data = { idtipo, talla, color, stock: cantidadProductos };
-    return this.http.post(url, data);
+    // Realizar la solicitud PUT al servidor
+    return this.http.put<any>("http://localhost:3000/actualizarstock/", body);
   }
   
 }

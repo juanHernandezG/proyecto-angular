@@ -19,7 +19,6 @@ export class ProductoComponent implements OnInit {
   archivoSeleccionado: File | null = null;
   idtipo: number = 0;
   cantidadProductos = 1;
-  precioSegunTipo: number | undefined;
   colores: string[] = [];
   tallas: string[] = [];
   imagenes: string[] = [];
@@ -31,8 +30,9 @@ export class ProductoComponent implements OnInit {
   stockTotalPorTalla: { [talla: string]: number } = {};
   stockTotalPorColorYTalla: number = 0;
   tallaSeleccionadaAnterior: string | null = null;
-  precioBase: number | undefined;
   carrito: Producto[] = [];
+  precioSegunTipo: number = 0; // Initialize with a default value
+  precioBase: number = 0;
   
 
   constructor(private tipoService: AppService, private route: ActivatedRoute, private carritoService: CarritoComprasService) {
@@ -109,8 +109,8 @@ export class ProductoComponent implements OnInit {
           this.precioSegunTipo = productosFiltrados[0].precio; // Puedes tomar el precio del primer producto encontrado
           this.precioBase = this.precioSegunTipo; // Almacenar el precio base sin el diseño seleccionado
         } else {
-          this.precioSegunTipo = undefined; // No se encontró un producto con el tipo proporcionado
-          this.precioBase = undefined;
+          this.precioSegunTipo = 0; // No se encontró un producto con el tipo proporcionado
+          this.precioBase = 0;
         }
       });
     });
@@ -178,6 +178,7 @@ export class ProductoComponent implements OnInit {
       }
     }
   }
+  
 
   getTallasForColor(colorSeleccionado: string | null): string[] {
     if (!colorSeleccionado || !this.idtipo) {
@@ -244,6 +245,9 @@ export class ProductoComponent implements OnInit {
       this.imagenSeleccionada &&
       this.idtipo !== null
     ) {
+      // Restablecer el precio a su valor base antes de agregar el producto al carrito
+      this.precioSegunTipo = this.precioBase;
+  
       // Buscar si el producto ya existe en el carrito
       const productoExistente = this.carrito.find(
         (producto) =>
@@ -285,7 +289,7 @@ export class ProductoComponent implements OnInit {
       }
   
       // Llamar al servicio para actualizar el stock del producto en el servidor
-      this.carritoService.actualizarStock(this.idtipo, this.tallaSeleccionada, this.colorSeleccionado, this.cantidadProductos).subscribe(
+      this.carritoService.actualizarStock(this.idtipo, this.colorSeleccionado, this.tallaSeleccionada, this.stockTotalPorColorYTalla - this.cantidadProductos).subscribe(
         (response) => {
           // El stock del producto se ha actualizado correctamente en el servidor
           // Puedes realizar acciones adicionales si es necesario.
@@ -305,5 +309,6 @@ export class ProductoComponent implements OnInit {
     }
   }
   
- 
+  
+
 }
