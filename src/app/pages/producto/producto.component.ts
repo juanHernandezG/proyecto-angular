@@ -308,7 +308,5 @@ export class ProductoComponent implements OnInit {
       this.cantidadProductos = 1;
     }
   }
-  
-  
 
 }

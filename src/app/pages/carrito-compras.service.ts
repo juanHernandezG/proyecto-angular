@@ -50,4 +50,8 @@ export class CarritoComprasService {
     return this.http.put<any>("http://localhost:3000/actualizarstock/", body);
   }
   
+  getStockPorProducto(idtipo: number, color: string, talla: string): Observable<number> {
+    const url = `http://localhost:3000/stock?idtipo=${idtipo}&color=${color}&talla=${talla}`;
+    return this.http.get<number>(url);
+  }
 }
