@@ -20,6 +20,7 @@ import { PoleraComponent } from './pages/admin/polera/polera.component';
 import { MangalargaComponent } from './pages/admin/mangalarga/mangalarga.component';
 import { PoleronComponent } from './pages/admin/poleron/poleron.component';
 import { PoloComponent } from './pages/admin/polo/polo.component';
+import { MantenedorDisenoComponent } from './pages/admin/mantenedor-diseno/mantenedor-diseno.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'tabla-mangalarga', component: MangalargaComponent, canActivate:[LoginGuard]},
   { path: 'tabla-poleron', component: PoleronComponent, canActivate:[LoginGuard]},
   { path: 'tabla-polo', component: PoloComponent, canActivate:[LoginGuard]},
+  { path: 'mant-diseno', component: MantenedorDisenoComponent, canActivate:[LoginGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

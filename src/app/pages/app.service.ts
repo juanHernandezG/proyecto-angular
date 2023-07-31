@@ -143,5 +143,21 @@ export class AppService {
     return this.http.put<any>("http://localhost:3000/actualizarstock/", body);
   }
   
+  getEnvios(): Observable<UIEnvio[]> {
+    return this.http.get<UIEnvio[]>('http://localhost:3000/envios')
+      .pipe(map((res: any) => res.data));
+  }
+
+  borrarDiseno(iddiseno: number): Observable<any> {
+    const url = `http://localhost:3000/borrardiseno/${iddiseno}`;
+
+    return this.http.delete(url).pipe(
+      map((res: any) => res)
+    );
+  }
+
+  agregarDiseno(diseno:any): Observable<any>{
+    return this.http.post<any>('http://localhost:3000/agregardiseno',diseno);
+  }
 
 }
