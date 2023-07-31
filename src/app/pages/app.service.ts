@@ -132,6 +132,17 @@ export class AppService {
     return this.http.post<any>('http://localhost:3000/agregarprod',producto);
   }
 
+  actualizarStock(tipo: number, color: string, talla: string, nuevoStock: number): Observable<any> {
+    const body = {
+      tipo: tipo,
+      color: color,
+      talla: talla,
+      stock: nuevoStock
+    };
+
+    // Realizar la solicitud PUT al servidor
+    return this.http.put<any>("http://localhost:3000/actualizarstock/", body);
+  }
   
 
 }
