@@ -78,7 +78,7 @@ import { ModalAddStockComponent } from './pages/services/modal-add-stock/modal-a
     MatStepperModule,
     MatFormFieldModule,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [AppService, CarritoComprasService],
   bootstrap: [AppComponent]
