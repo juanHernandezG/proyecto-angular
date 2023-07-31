@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -131,4 +131,7 @@ export class AppService {
   agregarProd(producto:any): Observable<any>{
     return this.http.post<any>('http://localhost:3000/agregarprod',producto);
   }
+
+  
+
 }
