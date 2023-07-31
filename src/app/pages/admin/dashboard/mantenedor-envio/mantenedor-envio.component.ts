@@ -15,13 +15,6 @@ export class MantenedorEnvioComponent implements OnInit {
 
   ngOnInit() {
     // Realiza la llamada HTTP para obtener los envíos utilizando el servicio
-    this.appService.getEnvios().subscribe(
-      (data) => {
-        this.envios = data; // Asigna los datos de envíos a la variable 'envios'
-      },
-      (error) => {
-        console.error('Error al obtener los datos de envíos:', error);
-      }
-    );
+    
   }
 }
