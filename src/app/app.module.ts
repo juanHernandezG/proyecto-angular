@@ -41,6 +41,8 @@ import { ModalAddStockComponent } from './pages/services/modal-add-stock/modal-a
 import {AngularFireModule} from "@angular/fire/compat"
 import {AngularFireStorageModule} from "@angular/fire/compat/storage"
 import { environment } from 'src/environments/environment';
+import { MantenedorDisenoComponent } from './pages/admin/mantenedor-diseno/mantenedor-diseno.component';
+import { ModalAddDisenoComponent } from './pages/services/modal-add-diseno/modal-add-diseno.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { environment } from 'src/environments/environment';
     PoloComponent,
     ModalAddComponent,
     ModalAddStockComponent,
+    MantenedorDisenoComponent,
+    ModalAddDisenoComponent,
   ],
   imports: [
     BrowserModule,

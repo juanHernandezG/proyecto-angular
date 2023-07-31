@@ -1,0 +1,48 @@
+<!-- THE MODAL ADD -->
+<div class="modal" [ngStyle]="{'display':modaladdDisenoService.ocultoaddDiseno}" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="formProduct" (ngSubmit)="saveData()" novalidate>
+                <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-tittle" >Añadir Diseño</h4>
+                <button (click)="ocultarModalAddDiseno()" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Mdoal Body -->
+            <div class="modal-body">
+                <!-- Nombre -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nombre</label>
+                    <div class="col-8">
+                        <input formControlName="nombre"  class="form-control" type="text" placeholder="Nombre">
+                        <div *ngIf="formProduct.get('nombre')?.errors && (formProduct.get('nombre')?.touched
+                        || formProduct.get('nombre')?.dirty)" 
+                        class="alert alert-danger">
+                            El nombre del diseño es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <!-- Imagen -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Imagen</label>
+                    <div class="col-8">
+                        <input formControlName="imagen"  class="form-control" type="text" placeholder="Stock">
+                        <div *ngIf="formProduct.get('imagen')?.errors && (formProduct.get('imagen')?.touched
+                        || formProduct.get('imagen')?.dirty)" 
+                        class="alert alert-danger">
+                            La imagen del diseño es obligatorio
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- Modal footer -->
+            <div>
+                <button type="submit" [disabled]="!formProduct.valid"  class="btn btn-primary" (click)="agregarDiseno()">Guardar</button>
+                <button (click)="ocultarModalAddDiseno()"  type="button" class="btn btn-danger" >Cerrar</button>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
