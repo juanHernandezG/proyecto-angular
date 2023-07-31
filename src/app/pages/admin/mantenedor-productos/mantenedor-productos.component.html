@@ -18,7 +18,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Tipo</th>
                                 <th>Color</th>
                                 <th>Talla</th>
@@ -31,7 +30,6 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let producto of prod">
-                                <td> {{producto.idprod}} </td>
                                 <td> {{ obtenerNombreTipo(producto.tipo) }} </td>
                                 <td> {{producto.color}} </td>
                                 <td> {{producto.talla}}</td>
@@ -45,7 +43,7 @@
                     </table>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>
 

@@ -38,6 +38,10 @@ import { PoloComponent } from './pages/admin/polo/polo.component';
 import { CommonModule } from '@angular/common';
 import { ModalAddComponent } from './pages/services/modal-add/modal-add.component';
 import { ModalAddStockComponent } from './pages/services/modal-add-stock/modal-add-stock.component';
+import {AngularFireModule} from "@angular/fire/compat"
+import {AngularFireStorageModule} from "@angular/fire/compat/storage"
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -78,7 +82,9 @@ import { ModalAddStockComponent } from './pages/services/modal-add-stock/modal-a
     MatStepperModule,
     MatFormFieldModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [AppService, CarritoComprasService],
   bootstrap: [AppComponent]
