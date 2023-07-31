@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod, UIProd } from './products';
+import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod, UIProd, UIEnvio } from './products';
 
 @Injectable({
   providedIn: 'root'

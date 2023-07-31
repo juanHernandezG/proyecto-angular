@@ -1,2 +1,44 @@
 <app-menu-admin></app-menu-admin>
-<p>mantenedor-envio works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+        </div> 
+        <br>
+        <div class="card border-primary mb-3 text-center">
+            <div class="card-header">Lista de Envíos</div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Productos</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>RUT</th>
+                            <th>Ciudad</th>
+                            <th>Dirección</th>
+                            <th>Celular</th>
+                            <th>Correo</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let envio of envios">
+                            <td>{{ envio.idenvio }}</td>
+                            <td>{{ envio.productosid }}</td>
+                            <td>{{ envio.nombre }}</td>
+                            <td>{{ envio.apellido }}</td>
+                            <td>{{ envio.rut }}</td>
+                            <td>{{ envio.ciudad }}</td>
+                            <td>{{ envio.direccion }}</td>
+                            <td>{{ envio.celular }}</td>
+                            <td>{{ envio.correo }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

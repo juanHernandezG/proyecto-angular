@@ -125,7 +125,7 @@ export interface UItipoNombres{
     4:'Polerón Polo'
 }
 
-export interface Envio{
+export interface UIEnvio{
     idenvio: number;
     productosid: number;
     nombre: string;
