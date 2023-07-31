@@ -24,8 +24,8 @@ export class MantenedorDisenoComponent implements OnInit{
     this.actualizarDisenos();
   }
 
-  abrirModalAdd(){
-    this.modaladdService.mostrarModalAdd();
+  abrirModalDiseno(){
+    this.modaldiseno.mostrarModalAddDiseno();
   }
   //Abrir el modal para el aumentar el stock
   abrirModalStock(){
