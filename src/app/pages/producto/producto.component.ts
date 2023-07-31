@@ -3,6 +3,7 @@ import { AppService } from '../app.service';
 import { Prod, Producto, Tipo } from '../products';
 import { ActivatedRoute } from '@angular/router';
 import { CarritoComprasService } from '../carrito-compras.service';
+import { AngularFireStorage } from "@angular/fire/compat/storage"
 
 @Component({
   selector: 'app-producto',
@@ -10,6 +11,8 @@ import { CarritoComprasService } from '../carrito-compras.service';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
+
+  title = 'imageUpload';
 
   tipos: Tipo[] = [];
   disenos: any[] = [];
@@ -33,9 +36,10 @@ export class ProductoComponent implements OnInit {
   carrito: Producto[] = [];
   precioSegunTipo: number = 0; // Initialize with a default value
   precioBase: number = 0;
-  
+  files: File[] = [];
 
-  constructor(private tipoService: AppService, private route: ActivatedRoute, private carritoService: CarritoComprasService) {
+  constructor(private tipoService: AppService, private route: ActivatedRoute, private carritoService: CarritoComprasService,
+    private fireStorage: AngularFireStorage) {
 
     this.tipoService.getProd().subscribe(
       (res: Prod[]) => {
@@ -310,5 +314,19 @@ export class ProductoComponent implements OnInit {
 
     }
   }
+
+  async onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const path = `yt/${file.name}`;
+      const uploadTask = await this.fireStorage.upload(path, file);
+      const url = await uploadTask.ref.getDownloadURL();
+
+      // Actualizar la imagen predeterminada con la URL del archivo cargado
+      this.imagenSeleccionada = url;
+      this.actualizarPrecioConDiseno();
+    }
+  }
+
 
 }
