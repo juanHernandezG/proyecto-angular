@@ -33,6 +33,8 @@ export class ModalAddComponent {
   }
 
   agregarProd(): void {
+    //
+    this.nuevoProducto = this.formProduct.value;
     // Lógica para agregar el nuevo producto a la base de datos
     this.appService.agregarProd(this.nuevoProducto).subscribe(
       (response) => {
