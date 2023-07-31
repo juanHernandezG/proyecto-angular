@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../../app.service';
 import { ModalAddStockService } from '../modal-add-stock.service';
 
@@ -9,10 +10,16 @@ import { ModalAddStockService } from '../modal-add-stock.service';
 })
 export class ModalAddStockComponent {
 
-  idProductoSeleccionado: number = 0;
+  idProductoSeleccionado: number=0;
   nuevoProducto: any = {};
-  constructor(public modalstock: ModalAddStockService, public appServise: AppService){
-    
+  nuevoStock: number = 0;
+  formProduct: FormGroup;
+  constructor(public modalstock: ModalAddStockService, 
+              public appServise: AppService,
+              public formBuilder: FormBuilder){
+    this.formProduct = formBuilder.group({
+      stock: ['',[Validators.required, Validators.min(0)]]
+    })
   }
 
   ocultarModalAddStock(){
@@ -20,5 +27,8 @@ export class ModalAddStockComponent {
   }
 
 
+  saveData(){
+    console.log(this.formProduct.value);
+  }
   
 }

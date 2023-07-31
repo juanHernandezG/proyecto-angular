@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {NgIf, NgFor} from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 import { AppService } from '../../app.service';
@@ -16,7 +16,7 @@ export class MantenedorProductosComponent implements  OnInit {
   product: Allproduct[] = [];
   prod: UIProd[] = [];
   tipos: Tipo[] = [];
-  productoSeleccionado: any;
+  //productoSeleccionado: any;
   nombreTipo: string = '';
   constructor(private appService: AppService, public modaladdService: ModalAddService, 
     public modalstock: ModalAddStockService){}
@@ -37,7 +37,7 @@ export class MantenedorProductosComponent implements  OnInit {
     stock: 0,
     imagen: ''
   };
-
+  @Output() productoSeleccionado = new EventEmitter<number>();
   ngOnInit(): void {
     this.appService.getAllproducts().subscribe(data => {
       this.product = data;
@@ -78,5 +78,5 @@ this.appService.getTipo().subscribe((data: Tipo[]) => {
     const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === idtipo);
     return tipoSeleccionado ? tipoSeleccionado.nombre : 'Tipo no encontrado';
   }
-  
+
 }
