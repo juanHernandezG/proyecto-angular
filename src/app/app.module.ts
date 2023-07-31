@@ -36,6 +36,8 @@ import { MenuNavComponent } from './pages/admin/menu-nav/menu-nav.component';
 import { PoleronComponent } from './pages/admin/poleron/poleron.component';
 import { PoloComponent } from './pages/admin/polo/polo.component';
 import { CommonModule } from '@angular/common';
+import { ModalAddComponent } from './pages/services/modal-add/modal-add.component';
+import { ModalAddStockComponent } from './pages/services/modal-add-stock/modal-add-stock.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CommonModule } from '@angular/common';
     MenuNavComponent,
     PoleronComponent,
     PoloComponent,
+    ModalAddComponent,
+    ModalAddStockComponent,
   ],
   imports: [
     BrowserModule,

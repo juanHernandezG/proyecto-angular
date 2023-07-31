@@ -107,3 +107,20 @@ export interface Prod{
     stock: number;
     imagen: string;
 }
+
+export interface UIProd{
+    idprod: number;
+    tipo: number;
+    color:string;
+    talla:string;
+    precio: number;
+    stock: number;
+    imagen:string;    
+}
+
+export interface UItipoNombres{
+    1:'Polera',
+    2:'Polera Manga Larga',
+    3:'Polerón Canguro',
+    4:'Polerón Polo'
+}

@@ -1,32 +1,45 @@
 <app-menu-admin></app-menu-admin>
 <div class="card">
-    <app-menu-nav></app-menu-nav>
+    <!-- <app-menu-nav></app-menu-nav> -->
     <div class="card-body">
-        <!-- <div class="row">
-            <div class="col-md-2">Filtrar por:</div>
+        <div class="row">
+            <!-- <div class="col-md-2">Filtrar por:</div>
             <div class="col-md-4">
                 <input type="text">
-            </div>
-        </div> -->
+            </div> -->
+            <button class="btn btn-primary" (click)="abrirModalAdd()">
+                Añadir producto
+            </button>
+        </div> 
         <br>
-        <!-- <div class="card border-primarey mb-3 text-center">
+        <div class="card border-primarey mb-3 text-center">
             <div class="card header">Lista de Productos
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Imagen</th>
+                                <th></th>
                                 <th>Tipo</th>
+                                <th>Color</th>
+                                <th>Talla</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
+                                <th>Imagen</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let producto of product">
-                                <td><img [src]="producto.imagen" alt="{{producto.tipo}}" height="100"></td>
+                            <tr *ngFor="let producto of prod">
+                                <td> {{producto.idprod}} </td>
                                 <td> {{producto.tipo}} </td>
+                                <td> {{producto.color}} </td>
+                                <td> {{producto.talla}}</td>
                                 <td> {{producto.precio}} </td>
                                 <td> {{producto.stock}} </td>
+                                <td><img [src]="producto.imagen" alt="{{producto.tipo}}" height="100"></td>
+                                <td><button class="btn btn-success" (click)="abrirModalStock()" >Añadir</button></td>
+                                <td><button class="btn btn-danger"  >Eliminar</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -36,3 +49,5 @@
     </div>
 </div>
 
+<app-modal-add></app-modal-add>
+<app-modal-add-stock></app-modal-add-stock>

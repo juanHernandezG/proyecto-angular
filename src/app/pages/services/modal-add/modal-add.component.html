@@ -1,0 +1,96 @@
+<!-- THE MODAL ADD -->
+<div class="modal" [ngStyle]="{'display':modaladdService.ocultoadd}" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="formProduct" (ngSubmit)="saveData()" novalidate>
+                <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-tittle" >Añadir Prod</h4>
+                <button (click)="ocultarModal()" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Mdoal Body -->
+            <div class="modal-body">
+                <!-- Tipo -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Tipo</label>
+                    <div class="col-8">
+                        <input formControlName="tipo"  class="form-control" type="number" placeholder="Tipo">
+                        <div *ngIf="formProduct.get('tipo')?.errors && (formProduct.get('tipo')?.touched
+                        || formProduct.get('tipo')?.dirty)" 
+                        class="alert alert-danger">
+                            El tipo del prod es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <!-- Color -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Color</label>
+                    <div class="col-8">
+                        <input formControlName="color"  class="form-control" type="text" placeholder="Color">
+                        <div *ngIf="formProduct.get('color')?.errors && (formProduct.get('color')?.touched
+                        || formProduct.get('color')?.dirty)" 
+                        class="alert alert-danger">
+                            El color del prod es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <!-- Talla -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Talla</label>
+                    <div class="col-8">
+                        <input formControlName="talla"  class="form-control" type="text" placeholder="Talla">
+                        <div *ngIf="formProduct.get('talla')?.errors && (formProduct.get('talla')?.touched
+                        || formProduct.get('talla')?.dirty)" 
+                        class="alert alert-danger">
+                            La talla del prod es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <!-- Precio -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Precio</label>
+                    <div class="col-8">
+                        <input formControlName="precio" class="form-control" type="number" placeholder="Precio">
+                        <div *ngIf="formProduct.get('precio')?.errors && (formProduct.get('precio')?.touched
+                        || formProduct.get('precio')?.dirty)" 
+                        class="alert alert-danger">
+                            El precio es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <!-- Stock -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Stock</label>
+                    <div class="col-8">
+                        <input formControlName="stock"  class="form-control" type="number" placeholder="Stock">
+                        <div *ngIf="formProduct.get('stock')?.errors && (formProduct.get('stock')?.touched
+                        || formProduct.get('stock')?.dirty)" 
+                        class="alert alert-danger">
+                            El stock del prod es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <!-- Imagen -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Imagen</label>
+                    <div class="col-8">
+                        <input formControlName="imagen"  class="form-control" type="number" placeholder="Stock">
+                        <div *ngIf="formProduct.get('imagen')?.errors && (formProduct.get('imagen')?.touched
+                        || formProduct.get('imagen')?.dirty)" 
+                        class="alert alert-danger">
+                            La imagen del prod es obligatorio
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- Modal footer -->
+            <div>
+                <button type="submit" [disabled]="!formProduct.valid"  class="btn btn-primary" (click)="agregarProd()">Guardar</button>
+                <button (click)="ocultarModal()"  type="button" class="btn btn-danger" >Cerrar</button>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- THE MODAL ADD -->
+<div class="modal" [ngStyle]="{'display': modalstock.ocultoaddStock}" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-tittle" >Añadir Stock</h4>
+                <button (click)="ocultarModalAddStock()" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Mdoal Body -->
+            <div class="modal-body">
+                <!-- Stock -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Stock</label>
+                    <div class="col-8">
+                        <input class="form-control" type="number" placeholder="Stock">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div>
+                <button type="button" class="btn btn-primary">Guardar</button>
+                <button (click)="ocultarModalAddStock()"  type="button" class="btn btn-danger" >Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,6 @@
 <div class="card">
     <app-menu-nav></app-menu-nav>
     <div class="card-body">
-        
         <br>
         <div class="card border-primarey mb-3 text-center">
             <div class="card header">Lista de Productos
@@ -17,11 +16,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let polera of poleras">
-                                <td><img [src]="polera.imagen" alt="Imagen de la polera" width="50" height="50"></td>
-                                <td>{{ polera.tipo}}  </td>
-                                <td>{{polera.precio}}  </td>
-                                <td>{{polera.stock}} </td>
+                            <tr *ngFor="let prods of prod">
+                                <td><img [src]="prods.imagen" alt="{{prods.imagen}}" width="50" height="50"></td>
+                                <td>{{prods.tipo}}  </td>
+                                <td>{{prods.precio}}  </td>
+                                <td>{{prods.stock}} </td>
                                 <td><button class="btn btn-success" >Añadir</button></td>
                                 <td><button class="btn btn-danger" >Eliminar</button></td>
                             </tr>

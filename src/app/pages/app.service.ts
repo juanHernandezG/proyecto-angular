@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod } from './products';
+import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod, UIProd } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,7 @@ export class AppService {
 
   public prods: Prod[] = [];
 
+  public prod: UIProd[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -116,5 +117,18 @@ export class AppService {
     .pipe(map((res:any) => res.data));  
   }
 
-
+  //PROD para el CRUD
+  getProdAll(): Observable<UIProd[]> {
+    return this.http.get<UIProd[]>('http://localhost:3000/prodAll')
+    .pipe(map((res:any) => res.data));
+  }
+  //AUMENTAR EL STOCK 
+  aumentarStockProd(idProdcuto:number): Observable<any>{
+    const url = `${this.apiUrl}/prodaumentarStock/${idProdcuto}`
+    return this.http.post<any>(url,{});
+  }
+  //INTENTO DE AGREGA UN NUEVO PRODUCTO
+  agregarProd(producto:any): Observable<any>{
+    return this.http.post<any>('http://localhost:3000/agregarprod',producto);
+  }
 }
