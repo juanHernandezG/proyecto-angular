@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgIf, NgFor} from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 import { AppService } from '../../app.service';
-import { Allproduct, Polera, UIPolera, UIProd, UItipoNombres } from '../../products';
+import { Allproduct, Polera, Tipo, UIPolera, UIProd, UItipoNombres } from '../../products';
 import { ModalAddService } from '../../services/modal-add.service';
 import { ModalAddStockService } from '../../services/modal-add-stock.service';
 
@@ -15,7 +15,9 @@ export class MantenedorProductosComponent implements  OnInit {
 
   product: Allproduct[] = [];
   prod: UIProd[] = [];
+  tipos: Tipo[] = [];
   productoSeleccionado: any;
+  nombreTipo: string = '';
   constructor(private appService: AppService, public modaladdService: ModalAddService, 
     public modalstock: ModalAddStockService){}
   tipoNombres: UItipoNombres[] = [];
@@ -44,6 +46,11 @@ export class MantenedorProductosComponent implements  OnInit {
     this.appService.getProdAll().subscribe(data => {
       this.prod = data;
     });
+
+    // Dentro del método ngOnInit o donde tengas el arreglo prod correctamente poblado
+this.appService.getTipo().subscribe((data: Tipo[]) => {
+  this.tipos = data;
+});
     
   }
 
@@ -66,4 +73,10 @@ export class MantenedorProductosComponent implements  OnInit {
       }
     )
   }
+
+  obtenerNombreTipo(idtipo: number): string {
+    const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === idtipo);
+    return tipoSeleccionado ? tipoSeleccionado.nombre : 'Tipo no encontrado';
+  }
+  
 }

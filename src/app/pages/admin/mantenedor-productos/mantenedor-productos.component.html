@@ -32,7 +32,7 @@
                         <tbody>
                             <tr *ngFor="let producto of prod">
                                 <td> {{producto.idprod}} </td>
-                                <td> {{producto.tipo}} </td>
+                                <td> {{ obtenerNombreTipo(producto.tipo) }} </td>
                                 <td> {{producto.color}} </td>
                                 <td> {{producto.talla}}</td>
                                 <td> {{producto.precio}} </td>
