@@ -124,3 +124,15 @@ export interface UItipoNombres{
     3:'Polerón Canguro',
     4:'Polerón Polo'
 }
+
+export interface UIEnvio{
+    idenvio: number;
+    productosid: number;
+    nombre: string;
+    apellido: string;
+    rut: string;
+    ciudad: string;
+    direccion: string;
+    celular: string;
+    correo: string;
+}
