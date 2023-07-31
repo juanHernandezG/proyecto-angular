@@ -123,9 +123,8 @@ export class AppService {
     .pipe(map((res:any) => res.data));
   }
   //AUMENTAR EL STOCK 
-  aumentarStockProd(idProdcuto:number): Observable<any>{
-    const url = `${this.apiUrl}/prodaumentarStock/${idProdcuto}`
-    return this.http.post<any>(url,{});
+  aumentarStockProd(idProdcuto:number, nuevoStock:number): Observable<any>{
+    return this.http.put(`http://localhost:3000/prodaumentarStock/${idProdcuto}`, {stock:nuevoStock});
   }
   //INTENTO DE AGREGA UN NUEVO PRODUCTO
   agregarProd(producto:any): Observable<any>{

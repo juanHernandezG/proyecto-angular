@@ -29,6 +29,20 @@ export class ModalAddStockComponent {
 
   saveData(){
     console.log(this.formProduct.value);
+    if(this.formProduct.valid){
+      const idProductoSeleccionado = this.idProductoSeleccionado;
+      const nuevoStock = this.formProduct.value.stock;
+
+      this.appServise.aumentarStockProd(idProductoSeleccionado, nuevoStock).subscribe(
+        (response) => {
+          console.log('Stock aumentado correctamente');
+          this.modalstock.ocultarModalAddStock();
+        },
+        (error) => {
+          console.error('Error al umentar el stock', error);
+        }
+      )
+    }
   }
   
 }
