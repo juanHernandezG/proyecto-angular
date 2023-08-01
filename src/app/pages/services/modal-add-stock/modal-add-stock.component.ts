@@ -54,6 +54,7 @@ export class ModalAddStockComponent implements OnInit{
           console.log('Stock aumentado correctamente');
           this.modalstock.ocultarModalAddStock();
           this.modalstock.updateStock();
+          this.formProduct.reset();
         },
         (error) => {
           console.error('Error al aumentar el stock', error);
