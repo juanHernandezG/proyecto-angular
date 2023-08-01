@@ -22,6 +22,9 @@ export class MantenedorDisenoComponent implements OnInit{
 
   ngOnInit(): void {
     this.actualizarDisenos();
+    this.modaldiseno.diseños$.subscribe((diseños) => {
+      this.disenos = diseños;
+    });
   }
 
   abrirModalDiseno(){
@@ -52,6 +55,7 @@ export class MantenedorDisenoComponent implements OnInit{
     this.appService.getDiseno().subscribe(
       (data: Diseno[]) => {
         this.disenos = data; // Actualiza los diseños que se están mostrando en el componente
+        this.modaldiseno.actualizarDisenos(data); // Envía todos los diseños al servicio compartido
       },
       (error) => {
         console.error('Error al obtener los diseños:', error);
