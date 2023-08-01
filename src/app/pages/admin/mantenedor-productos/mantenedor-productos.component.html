@@ -36,14 +36,14 @@
                                 <td> {{producto.precio}} </td>
                                 <td> {{producto.stock}} </td>
                                 <td><img [src]="producto.imagen" alt="{{producto.tipo}}" height="100"></td>
-                                <td><button class="btn btn-success" (click)="abrirModalStock()" >Añadir</button></td>
-                                <td><button class="btn btn-danger"  >Eliminar</button></td>
+                                <td><button class="btn btn-success" (click)="abrirModalStock(producto.idprod)">Editar</button></td>
+                                <td><button class="btn btn-danger" (click)="eliminarProducto(producto.idprod)">Eliminar</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>
 
