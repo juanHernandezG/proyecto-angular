@@ -65,7 +65,7 @@ export class StepperComponent implements OnInit {
     firstCtrl:['', Validators.required],  //Nombre
     firstCtrl2:['', Validators.required], //Apellido
     firstCtrl3:['', [Validators.required,Validators.email]], //correo
-    firstCtrl4:['', [Validators.required,Validators.maxLength(8)]] //rut
+    firstCtrl4:['', [Validators.required,Validators.maxLength(9)]] //rut
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl:['', Validators.required], //ciudad
