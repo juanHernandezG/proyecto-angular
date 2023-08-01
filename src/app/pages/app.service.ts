@@ -160,4 +160,14 @@ export class AppService {
     return this.http.post<any>('http://localhost:3000/agregardiseno',diseno);
   }
 
+  eliminarProducto(idprod: number): Observable<any> {
+    return this.http.delete<any>("http://localhost:3000/borrarprod/"+idprod);
+  }
+
+  actualizarStockk(idProducto: number, nuevoStock: number): Observable<any> {
+    const url = "http://localhost:3000/actualizarstock/"+idProducto;
+    const body = { stock: nuevoStock };
+    return this.http.put<any>(url, body);
+  }
+
 }

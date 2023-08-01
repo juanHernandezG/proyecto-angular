@@ -14,12 +14,19 @@ import { ModalAddStockService } from '../../services/modal-add-stock.service';
 export class MantenedorProductosComponent implements  OnInit {
 
   product: Allproduct[] = [];
+  idProductoSeleccionado: number = 0;
   prod: UIProd[] = [];
   tipos: Tipo[] = [];
+  tipoNombre: UItipoNombres[] = [];
   //productoSeleccionado: any;
   nombreTipo: string = '';
   constructor(private appService: AppService, public modaladdService: ModalAddService, 
-    public modalstock: ModalAddStockService){}
+    public modalstock: ModalAddStockService){
+      this.modalstock.stockUpdated$.subscribe(() => {
+        // Actualizar la lista de productos automáticamente
+        this.obtenerProductos();
+      });
+    }
   tipoNombres: UItipoNombres[] = [];
   //
   tipoNombress: {[key: number]:string}={
@@ -48,10 +55,28 @@ export class MantenedorProductosComponent implements  OnInit {
     });
 
     // Dentro del método ngOnInit o donde tengas el arreglo prod correctamente poblado
-this.appService.getTipo().subscribe((data: Tipo[]) => {
-  this.tipos = data;
-});
-    
+    this.appService.getTipo().subscribe((data: Tipo[]) => {
+      this.tipos = data;
+    });
+
+    this.modaladdService.agregarProducto$.subscribe(() => {
+      // Actualizar la lista de productos automáticamente
+      this.obtenerProductos();
+    });
+
+    this.obtenerProductos();
+    // Suscribirse al evento de agregar producto
+    this.modaladdService.agregarProducto$.subscribe(() => {
+      // Actualizar la lista de productos automáticamente
+      this.obtenerProductos();
+    });
+
+  }
+
+  obtenerProductos(): void {
+    this.appService.getProdAll().subscribe(data => {
+      this.prod = data;
+    });
   }
 
   //Abrir modal para el producto nuevo
@@ -59,9 +84,13 @@ this.appService.getTipo().subscribe((data: Tipo[]) => {
     this.modaladdService.mostrarModalAdd();
   }
   //Abrir el modal para el aumentar el stock
-  abrirModalStock(){
-    this.modalstock.mostrarModalAddStock();    
+  abrirModalStock(idprod: number){
+    this.modalstock.mostrarModalAddStock();
+    this.modalstock.setProductoSeleccionado(idprod);
+    
   }
+
+  
 
   agregarProd():void{
     this.appService.agregarProd(this.nuevoProducto).subscribe(
@@ -78,5 +107,21 @@ this.appService.getTipo().subscribe((data: Tipo[]) => {
     const tipoSeleccionado = this.tipos.find((tipo: Tipo) => tipo.idtipo === idtipo);
     return tipoSeleccionado ? tipoSeleccionado.nombre : 'Tipo no encontrado';
   }
+
+  eliminarProducto(idprod: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      this.appService.eliminarProducto(idprod).subscribe(
+        () => {
+          console.log('Producto eliminado exitosamente');
+          // Actualizar la lista de productos después de eliminar
+          this.obtenerProductos();
+        },
+        (error) => {
+          console.error('Error al eliminar el producto:', error);
+        }
+      );
+    }
+  }
+  
 
 }

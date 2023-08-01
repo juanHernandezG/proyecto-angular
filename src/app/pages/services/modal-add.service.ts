@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,10 @@ import { Injectable } from '@angular/core';
 export class ModalAddService {
 
   public ocultoadd: string ='';
+  private agregarProductoSubject = new Subject<void>();
+
+  agregarProducto$ = this.agregarProductoSubject.asObservable();
+
 
   constructor() { }
   //Ocultar Modal del producto nvo
@@ -15,5 +20,9 @@ export class ModalAddService {
   //Mostrar modal del producto nvo
   mostrarModalAdd(){
     this.ocultoadd = 'block';
+  }
+
+  emitirAgregarProducto(): void {
+    this.agregarProductoSubject.next();
   }
 }
