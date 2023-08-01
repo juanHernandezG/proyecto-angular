@@ -18,6 +18,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>N°</th>
                                 <th>Nombre</th>
                                 <th>Imagen</th>
                                 <th></th>
@@ -25,7 +26,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let diseno of disenos">
+                            <tr *ngFor="let diseno of disenos; let i = index;">
+                                <td>{{ i + 1 }}</td>
                               <td> {{ diseno.nombre }} </td>
                               <td><img [src]="diseno.imagen" height="100"></td>
                               <td><button class="btn btn-danger" (click)="borrarDiseno(diseno.iddiseno)">Eliminar</button></td>

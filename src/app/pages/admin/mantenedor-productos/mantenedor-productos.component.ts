@@ -18,6 +18,9 @@ export class MantenedorProductosComponent implements  OnInit {
   prod: UIProd[] = [];
   tipos: Tipo[] = [];
   tipoNombre: UItipoNombres[] = [];
+  // En el componente
+  numProductos: number = 0;
+
   //productoSeleccionado: any;
   nombreTipo: string = '';
   constructor(private appService: AppService, public modaladdService: ModalAddService, 
@@ -76,6 +79,8 @@ export class MantenedorProductosComponent implements  OnInit {
   obtenerProductos(): void {
     this.appService.getProdAll().subscribe(data => {
       this.prod = data;
+      this.numProductos = this.prod.length;
+      this.ordenarPorTipo();
     });
   }
 
@@ -122,6 +127,12 @@ export class MantenedorProductosComponent implements  OnInit {
       );
     }
   }
+
+  ordenarPorTipo(): void {
+    // Utiliza el método sort() para ordenar los productos por el atributo 'tipo'
+    this.prod.sort((a, b) => a.tipo - b.tipo);
+  }
+  
   
 
 }

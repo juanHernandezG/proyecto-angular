@@ -11,6 +11,7 @@ import { ModalAddService } from '../../services/modal-add.service';
 })
 export class MantenedorDisenoComponent implements OnInit{
 
+  numProductos: number = 0;
   disenos: Diseno[] = [];
   nuevoDiseno: any = {
     nombre: '',
@@ -56,6 +57,7 @@ export class MantenedorDisenoComponent implements OnInit{
       (data: Diseno[]) => {
         this.disenos = data; // Actualiza los diseños que se están mostrando en el componente
         this.modaldiseno.actualizarDisenos(data); // Envía todos los diseños al servicio compartido
+        this.numProductos = this.disenos.length;
       },
       (error) => {
         console.error('Error al obtener los diseños:', error);

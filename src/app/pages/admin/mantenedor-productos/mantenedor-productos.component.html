@@ -18,6 +18,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>N°</th>
                                 <th>Tipo</th>
                                 <th>Color</th>
                                 <th>Talla</th>
@@ -29,7 +30,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let producto of prod">
+                            <tr *ngFor="let producto of prod; let i = index;">
+                                <td>{{ i + 1 }}</td>
                                 <td> {{ obtenerNombreTipo(producto.tipo) }} </td>
                                 <td> {{producto.color}} </td>
                                 <td> {{producto.talla}}</td>
