@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod, UIProd, UIEnvio } from './products';
+import { Color, Diseno, Mangalarga, Polera, Poleron, Polo, Producto, Talla, Tipo, Allproduct, Colorml, Prod, UIProd, UIEnvio, Envio } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -174,5 +174,13 @@ export class AppService {
     return this.http.post<any>("http://localhost:3000/agregarenvio",envio);
   }
 
-  
+  guardarVenta(idenvio: number): Observable<any> {
+    const url = `http://localhost:3000/guardarventa/${idenvio}`;
+    return this.http.post<any>(url, {});
+  }
+
+  getEnvioss(): Observable<Envio[]> {
+    return this.http.get<Envio[]>('http://localhost:3000/envios')
+      .pipe(map((res: any) => res.data));
+  }
 }

@@ -139,3 +139,20 @@ export interface UIEnvio {
     diseno: string = '';
   }
 
+  export interface Ventas{
+    idventa: number;
+    idenvio:number
+  }
+
+  export interface Envio {
+    idenvio: number;
+    productosid: string;
+    nombre: string;
+    apellido: string;
+    rut: string;
+    ciudad: string;
+    direccion: string;
+    celular: string;
+    correo: string;
+    activo: boolean;
+  }
