@@ -72,16 +72,7 @@ export interface Diseno{
 }
 
 
-export interface Producto {
-    idproducto: number;
-    idtipo: number;
-    precio: number;
-    talla: string;
-    color: string;
-    cantidad: number;
-    imagen: string;
-    diseno: string;
-  }
+
   
 
 export interface Allproduct{
@@ -125,9 +116,9 @@ export interface UItipoNombres{
     4:'Polerón Polo'
 }
 
-export interface UIEnvio{
+export interface UIEnvio {
     idenvio: number;
-    productosid: number;
+    productosid: string;
     nombre: string;
     apellido: string;
     rut: string;
@@ -135,5 +126,16 @@ export interface UIEnvio{
     direccion: string;
     celular: string;
     correo: string;
-}
+  }
+
+  export class Producto {
+    idproducto: number = 0;
+    idtipo: number = 0;
+    precio: number = 0;
+    talla: string = '';
+    color: string = '';
+    cantidad: number = 0;
+    imagen: string = '';
+    diseno: string = '';
+  }
 

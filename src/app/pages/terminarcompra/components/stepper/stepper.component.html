@@ -41,7 +41,7 @@
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <mat-label>Telefono</mat-label>
+                    <mat-label>Celular</mat-label>
                     <input matInput formControlName="secondCtrl3" placeholder="912345678" required>
                 </mat-form-field>
                 <div>
@@ -54,8 +54,7 @@
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Pagar</ng-template>
-            <div #paypal></div>
-            <button>pagar</button>
+            <div #paypal (click)="guardarDatosEnvio()"></div>
             <button mat-raised-button (click)="isEditable = !isEditable">
                 {{ !isEditable ? 'Editar' : 'No Editar'}}
             </button>

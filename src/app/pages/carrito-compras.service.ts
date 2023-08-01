@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './products';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, map } from 'rxjs';
+import { Observable, Subject, forkJoin, map } from 'rxjs';
 
 
 @Injectable({
@@ -12,6 +12,7 @@ export class CarritoComprasService {
   private apiUrl = 'http://localhost/3000';
 
   public carrito: Producto[] = [];
+  productosCarrito: Producto[] = [];
 
   constructor(private http:HttpClient) { }
 
@@ -60,4 +61,15 @@ export class CarritoComprasService {
     return this.http.get<number[]>(url);
   }
 
+  guardarProductosCarrito(productos: Producto[]): void {
+    this.productosCarrito = productos;
+  }
+
+  eliminarProductosCarrito(productosIds: string[]): Observable<any> {
+    const url = 'http://localhost:3000/eliminarproductoscarrito';
+  
+    // Recorrer los IDs de producto y enviar una solicitud DELETE por cada uno
+    return forkJoin(productosIds.map(id => this.http.delete<any>(`${url}/${id}`)));
+  }
+  
 }

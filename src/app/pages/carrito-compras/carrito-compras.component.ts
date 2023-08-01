@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarritoComprasService } from '../carrito-compras.service';
 import { Producto } from '../products';
 import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito-compras',
@@ -13,7 +14,7 @@ export class CarritoComprasComponent implements OnInit {
   precioTotal: number = 0;
   cantidadTotal: number = 0;
 
-  constructor(private carritoService: CarritoComprasService) {
+  constructor(private carritoService: CarritoComprasService, private router: Router) {
     // Obtener la lista de productos del carrito desde el servicio y calcular el precio total al inicializar el componente
     this.carritoService.getCarro().subscribe(
       (res: Producto[]) => {
@@ -70,4 +71,16 @@ export class CarritoComprasComponent implements OnInit {
     // Calcular la cantidad total sumando la cantidad de cada producto en el carrito
     this.cantidadTotal = this.productos.reduce((total, producto) => total + producto.cantidad, 0);
   }
+
+  confirmarCompra(): void {
+    // Verificar que se estén obteniendo los productos correctamente
+    console.log('Productos del carrito:', this.productos);
+  
+    // Utilizamos el servicio CarritoComprasService para almacenar temporalmente los datos del carrito
+    this.carritoService.guardarProductosCarrito(this.productos);
+  
+    // Navegamos a la página del StepperComponent
+    this.router.navigate(['/comprar']);
+  }
+  
 }

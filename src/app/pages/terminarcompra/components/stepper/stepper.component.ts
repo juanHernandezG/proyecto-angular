@@ -1,6 +1,8 @@
-import { Producto } from './../../../products';
+import { Producto, UIEnvio } from './../../../products';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AppService } from 'src/app/pages/app.service';
+import { CarritoComprasService } from 'src/app/pages/carrito-compras.service';
 
 declare var paypal : any;
 
@@ -11,11 +13,13 @@ declare var paypal : any;
 })
 export class StepperComponent implements OnInit {
 
+  productos: Producto[] = this.carritoService.productosCarrito;
+
   @ViewChild('paypal', { static:true }) paypalElement : ElementRef | undefined;
 
   producto = {
     descripcion : 'producto',
-    precio : 19.99,
+    precio : 1,
     img : 'imagen'
   }
 
@@ -39,6 +43,7 @@ export class StepperComponent implements OnInit {
       onApprove: async (data : any, actions : any) => {
         const order = await actions.order.capture();
         console.log(order);
+        this.guardarDatosEnvio();
       },
       onError: (err: any)=> {
         console.log(err);
@@ -69,7 +74,75 @@ export class StepperComponent implements OnInit {
   });
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder){
+  constructor(private _formBuilder: FormBuilder, private appService: AppService, public carritoService: CarritoComprasService){
   }
 
-}
+  guardarDatosEnvio(): void {
+    if (this.secondFormGroup.valid && this.productos.length > 0) {
+      // Verificar que los campos no estén vacíos
+      const correo = this.firstFormGroup.get('firstCtrl3')?.value ?? '';
+      const celular = this.secondFormGroup.get('secondCtrl3')?.value ?? '';
+      const direccion = this.secondFormGroup.get('secondCtrl2')?.value ?? '';
+      const ciudad = this.secondFormGroup.get('secondCtrl')?.value ?? '';
+      const rut = this.firstFormGroup.get('firstCtrl4')?.value ?? '';
+      const apellido = this.firstFormGroup.get('firstCtrl2')?.value ?? '';
+      const nombre = this.firstFormGroup.get('firstCtrl')?.value ?? '';
+  
+      console.log('Correo:', correo);
+      console.log('Celular:', celular);
+      console.log('Dirección:', direccion);
+      console.log('Ciudad:', ciudad);
+      console.log('Rut:', rut);
+      console.log('Apellido:', apellido);
+      console.log('Nombre:', nombre);
+  
+      if (!correo || !celular || !direccion || !ciudad || !rut || !apellido || !nombre) {
+        console.error('Los campos no pueden estar vacíos');
+        return;
+      }
+  
+      // Crear un objeto datosEnvio con los datos de envío y la lista de idproducto
+      const datosEnvio: UIEnvio = {
+        idenvio: 0, // El idenvio será asignado automáticamente por la base de datos
+        productosid: this.productos.map((producto) => producto.idproducto).join(','), // Utiliza la lista de idproducto del carrito
+        nombre: nombre,
+        apellido: apellido,
+        rut: rut,
+        ciudad: ciudad,
+        direccion: direccion,
+        celular: celular,
+        correo: correo
+      };
+  
+      console.log('Datos de envío:', datosEnvio);
+  
+      // Aquí puedes enviar los datos de envío al servicio para guardarlos en la base de datos
+      this.appService.guardarDatosEnvio(datosEnvio).subscribe(
+        (response) => {
+          console.log('Datos de envío guardados exitosamente');
+  
+          // Una vez que los datos de envío se han guardado exitosamente, eliminamos los productos del carrito uno por uno
+          this.productos.forEach((producto) => {
+            this.carritoService.delete(producto.idproducto).subscribe(
+              (result) => {
+                console.log(`Producto con ID ${producto.idproducto} eliminado exitosamente`);
+                // Aquí puedes realizar alguna acción adicional si es necesario
+              },
+              (error) => {
+                console.error(`Error al eliminar producto con ID ${producto.idproducto}:`, error);
+                // Aquí puedes mostrar un mensaje de error al usuario o realizar acciones para manejar el error
+              }
+            );
+          });
+        },
+        (error) => {
+          console.error('Error al guardar los datos de envío:', error);
+          // Aquí puedes mostrar un mensaje de error al usuario o realizar acciones para manejar el error
+        }
+      );
+    }
+  }
+  
+  
+  
+}  

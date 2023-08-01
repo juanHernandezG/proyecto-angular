@@ -170,4 +170,9 @@ export class AppService {
     return this.http.put<any>(url, body);
   }
 
+  guardarDatosEnvio(envio:any): Observable<any>{
+    return this.http.post<any>("http://localhost:3000/agregarenvio",envio);
+  }
+
+  
 }
