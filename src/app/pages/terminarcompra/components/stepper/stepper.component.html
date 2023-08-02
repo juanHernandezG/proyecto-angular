@@ -25,6 +25,7 @@
                 <div>
                     <button id="hola" mat-button matStepperNext>Siguiente</button>
                 </div>
+                <br><br>
             </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup" [editable]="isEditable" >
@@ -50,6 +51,7 @@
                     </button>
                     <button id="hola" mat-button matStepperNext>Siguiente</button>
                     </div>
+                    <br><br><br><br><br><br>
             </form>
         </mat-step>
         <mat-step>
@@ -58,6 +60,7 @@
             <button mat-raised-button (click)="isEditable = !isEditable">
                 {{ !isEditable ? 'Editar' : 'No Editar'}}
             </button>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
         </mat-step>
     </mat-stepper>
 </div>

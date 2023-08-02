@@ -1,6 +1,7 @@
 import { Producto, UIEnvio } from './../../../products';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { AppService } from 'src/app/pages/app.service';
 import { CarritoComprasService } from 'src/app/pages/carrito-compras.service';
 
@@ -44,6 +45,12 @@ export class StepperComponent implements OnInit {
         const order = await actions.order.capture();
         console.log(order);
         this.guardarDatosEnvio();
+
+        if (order.status=="COMPLETED"){
+          this.router.navigate(['/carrito']);
+          window.alert("Su compra fue realizada exitosamente, Revise su comprobante de PayPal en su correo electronico");
+        }
+
       },
       onError: (err: any)=> {
         console.log(err);
@@ -51,6 +58,7 @@ export class StepperComponent implements OnInit {
     })
     .render(this.paypalElement?.nativeElement);
   }
+  
 
 
   circles = document.querySelectorAll(".circles");
@@ -74,7 +82,7 @@ export class StepperComponent implements OnInit {
   });
   isEditable = false;
 
-  constructor(private _formBuilder: FormBuilder, private appService: AppService, public carritoService: CarritoComprasService){
+  constructor(private _formBuilder: FormBuilder, private appService: AppService, public carritoService: CarritoComprasService, private router: Router){
   }
 
   guardarDatosEnvio(): void {
